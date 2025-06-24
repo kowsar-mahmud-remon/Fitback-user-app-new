@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "FitBack",
+    "slug": "fitback-user-android-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./logo/icon.png",
+    "userInterfaceStyle": "light",
+
+    "newArchEnabled": true,
+
+    "splash": {
+      "image": "./logo/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "platforms": ["ios", "android"],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.qitca.fitback",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./logo/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./logo/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9febfa31-c651-40f0-927c-ad1227d7e9f5"
+      }
+    }
+  }
+}

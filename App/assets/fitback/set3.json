@@ -1,0 +1,668 @@
+[
+  {
+    "id": 1,
+    "Question": "What are some healthy snacks?",
+    "Choice A": "Fruits and vegetables",
+    "Choice B": "Biscuits",
+    "Choice C": "Chicken",
+    "Choice D": "Burgers",
+    "Correct Answer": "Fruits and vegetables"
+  },
+  {
+    "id": 2,
+    "Question": "What are some simple ways to improve our diet?",
+    "Choice A": "Cook at home",
+    "Choice B": "Processed food",
+    "Choice C": "Plan meals",
+    "Choice D": "Skip meals",
+    "Correct Answer": "Cook at home"
+  },
+  {
+    "id": 3,
+    "Question": "Do I need to eat breakfast?",
+    "Choice A": "Always",
+    "Choice B": "Sometimes",
+    "Choice C": "Never",
+    "Choice D": "Barely",
+    "Correct Answer": "Always"
+  },
+  {
+    "id": 4,
+    "Question": "Which of the following minerals helps build strong bones and teeth?",
+    "Choice A": "Iodine",
+    "Choice B": "Calcium",
+    "Choice C": "Iron",
+    "Choice D": "Vitamin",
+    "Correct Answer": "Calcium"
+  },
+  {
+    "id": 5,
+    "Question": "Why does your body need vitamins and minerals?",
+    "Choice A": "They give the body energy",
+    "Choice B": "They help carry out metabolic reactions",
+    "Choice C": "They insulate the body organs",
+    "Choice D": "For supporting the immune system",
+    "Correct Answer": "They help carry out metabolic reactions"
+  },
+  {
+    "id": 6,
+    "Question": "What is the main purpose of carbohydrates in the body?",
+    "Choice A": "They provide chemicals repairing cells and aid in digestion",
+    "Choice B": "They are the main source of energy for the body",
+    "Choice C": "None of these",
+    "Choice D": "A+B",
+    "Correct Answer": "They are the main source of energy for the body"
+  },
+  {
+    "id": 7,
+    "Question": "Which nutrients give us energy to do work?",
+    "Choice A": "Fats and carbohydrates",
+    "Choice B": "Vitamins and minerals",
+    "Choice C": "Protein",
+    "Choice D": "Fats",
+    "Correct Answer": "Fats and carbohydrates"
+  },
+  {
+    "id": 8,
+    "Question": "Which of the following is an autotroph?",
+    "Choice A": "Human",
+    "Choice B": "Plant",
+    "Choice C": "Animal",
+    "Choice D": "",
+    "Correct Answer": "Plant"
+  },
+  {
+    "id": 9,
+    "Question": "Select the group of eatables rich in iron.",
+    "Choice A": "Amla, spinach, jaggery",
+    "Choice B": "Amla, cabbage, tomato",
+    "Choice C": "Cabbage, amla, spinach",
+    "Choice D": "Tomato, cabbage, spinach",
+    "Correct Answer": "Amla, spinach, jaggery"
+  },
+  {
+    "id": 10,
+    "Question": "Which disease is caused by a deficiency of haemoglobin?",
+    "Choice A": "Malaria",
+    "Choice B": "Anaemia",
+    "Choice C": "Rabies",
+    "Choice D": "Dengue",
+    "Correct Answer": "Anaemia"
+  },
+  {
+    "id": 11,
+    "Question": "During the pandemic, doctors advised consuming Vitamin C-rich foods. Which group is rich in Vitamin C?",
+    "Choice A": "Broccoli, soybeans, peppers",
+    "Choice B": "Strawberries, orange, soybeans",
+    "Choice C": "Milk, strawberries, lemon",
+    "Choice D": "Broccoli, orange, lemon",
+    "Correct Answer": "Broccoli, soybeans, peppers"
+  },
+  {
+    "id": 12,
+    "Question": "Which part of our diet is essential for digestive system health?",
+    "Choice A": "Roughage",
+    "Choice B": "Proteins",
+    "Choice C": "Fats",
+    "Choice D": "Vitamins",
+    "Correct Answer": "Roughage"
+  },
+  {
+    "id": 13,
+    "Question": "Beriberi disease is caused by a deficiency of which vitamin?",
+    "Choice A": "Vitamin B12",
+    "Choice B": "Vitamin B2",
+    "Choice C": "Vitamin B1",
+    "Choice D": "Vitamin C",
+    "Correct Answer": "Vitamin B1"
+  },
+  {
+    "id": 14,
+    "Question": "Night blindness is caused due to a deficiency of ________?",
+    "Choice A": "Vitamin A",
+    "Choice B": "Vitamin D",
+    "Choice C": "Vitamin E",
+    "Choice D": "Vitamin C",
+    "Correct Answer": "Vitamin A"
+  },
+  {
+    "id": 15,
+    "Question": "Essentials for good health are ___________?",
+    "Choice A": "Exercise",
+    "Choice B": "Proper food plan",
+    "Choice C": "A+B",
+    "Choice D": "Food",
+    "Correct Answer": "A+B"
+  },
+  {
+    "id": 16,
+    "Question": "Why should we eat slowly and chew well?",
+    "Choice A": "To eat less",
+    "Choice B": "Not to drink water while eating",
+    "Choice C": "To digest food properly",
+    "Choice D": "To eat more",
+    "Correct Answer": "To digest food properly"
+  },
+  {
+    "id": 17,
+    "Question": "To retain nutrients in food, what should we do before eating?",
+    "Choice A": "Overcook the food",
+    "Choice B": "Cook the rice or cereals in the water they were soaked in",
+    "Choice C": "Wash fruits and vegetables after cutting them",
+    "Choice D": "A+C",
+    "Correct Answer": "Cook the rice or cereals in the water they were soaked in"
+  },
+  {
+    "id": 18,
+    "Question": "The primary reason smoking is bad for health is because cigarette smoke ________?",
+    "Choice A": "Inhibits the ability of haemoglobin to carry blood",
+    "Choice B": "Kills the cilia in the upper respiratory tract",
+    "Choice C": "Destroys normal lung cells and grows cancer",
+    "Choice D": "A+B",
+    "Correct Answer": "Kills the cilia in the upper respiratory tract"
+  },
+  {
+    "id": 19,
+    "Question": "Personal hygiene helps ___________?",
+    "Choice A": "To build an attractive personality",
+    "Choice B": "Provides conceptual stability",
+    "Choice C": "Both",
+    "Choice D": "To stay safe",
+    "Correct Answer": "Both"
+  },
+  {
+    "id": 20,
+    "Question": "A diet rich in all important nutrients is called?",
+    "Choice A": "Rich diet",
+    "Choice B": "Balanced diet",
+    "Choice C": "Complete diet",
+    "Choice D": "Healthy diet",
+    "Correct Answer": "Balanced diet"
+  },
+  {
+    "id": 21,
+    "Question": "What are three foods high in fiber?",
+    "Choice A": "Fruits, vegetables, and whole grains",
+    "Choice B": "Burgers, fries, and milkshake",
+    "Choice C": "Salad, butter, and pickles",
+    "Choice D": "Salad, fries, and milkshake",
+    "Correct Answer": "Fruits, vegetables, and whole grains"
+  },
+  {
+    "id": 22,
+    "Question": "What's the ultimate goal of your weight loss journey?",
+    "Choice A": "To adopt healthy long-term habits",
+    "Choice B": "To make weight loss feel more in my control",
+    "Choice C": "To improve current health conditions",
+    "Choice D": "To live healthier without restricting lifestyle",
+    "Correct Answer": "To adopt healthy long-term habits"
+  },
+  {
+    "id": 23,
+    "Question": "An ideal weight loss plan would:",
+    "Choice A": "Feel accessible and easy to follow",
+    "Choice B": "Make it easy to track my progress in detail",
+    "Choice C": "Feel fun and never lonely",
+    "Choice D": "Give me the freedom to enjoy foods I love while losing weight",
+    "Correct Answer": "Make it easy to track my progress in detail"
+  },
+  {
+    "id": 24,
+    "Question": "Which statement best fits your current mindset?",
+    "Choice A": "I want to lose weight but I'm clueless about where to start",
+    "Choice B": "I want to measure my progress in my current weight loss journey",
+    "Choice C": "I don't have the motivation to lose weight on my own",
+    "Choice D": "I don't want to sacrifice my lifestyle while losing weight",
+    "Correct Answer": "I don't have the motivation to lose weight on my own"
+  },
+  {
+    "id": 25,
+    "Question": "What's the biggest reason you might leave a weight loss program?",
+    "Choice A": "I can't make it work with my daily schedule",
+    "Choice B": "I forget to track my progress and lose momentum",
+    "Choice C": "I feel isolated and get discouraged",
+    "Choice D": "I have to make too many sacrifices in eating",
+    "Correct Answer": "I can't make it work with my daily schedule"
+  },
+  {
+    "id": 26,
+    "Question": "You’ve hit a major milestone! How do you reward yourself?",
+    "Choice A": "Spend a relaxing night watching movies",
+    "Choice B": "Share success on social media",
+    "Choice C": "Go out with friends",
+    "Choice D": "Treat yourself to an amazing healthy meal",
+    "Correct Answer": "Treat yourself to an amazing healthy meal"
+  },
+  {
+    "id": 27,
+    "Question": "What is the most overwhelming part of your weight loss journey?",
+    "Choice A": "Remembering to record what I eat",
+    "Choice B": "Finding an effective way to track progress",
+    "Choice C": "Feeling bored and alone",
+    "Choice D": "Giving up foods that make me happy",
+    "Correct Answer": "Finding an effective way to track progress"
+  },
+  {
+    "id": 28,
+    "Question": "I'd stick to a weight loss program if:",
+    "Choice A": "Someone wrote out all the steps",
+    "Choice B": "I could measure progress easily with an app",
+    "Choice C": "I had a strong support system",
+    "Choice D": "I didn't have to give up favorite foods",
+    "Correct Answer": "Someone wrote out all the steps"
+  },
+  {
+    "id": 29,
+    "Question": "Describe your ideal weight loss strategy in one word.",
+    "Choice A": "Simplicity",
+    "Choice B": "Progress",
+    "Choice C": "Supportive",
+    "Choice D": "Freedom",
+    "Correct Answer": "Progress"
+  },
+  {
+    "id": 30,
+    "Question": "What is the recommended daily intake of fruits and vegetables for adults?",
+    "Choice A": "2 servings",
+    "Choice B": "4 servings",
+    "Choice C": "6 servings",
+    "Choice D": "8 servings",
+    "Correct Answer": "6 servings"
+  },
+  {
+    "id": 31,
+    "Question": "Which nutrient primarily provides energy to the body?",
+    "Choice A": "Protein",
+    "Choice B": "Carbohydrates",
+    "Choice C": "Fat",
+    "Choice D": "Vitamins",
+    "Correct Answer": "Carbohydrates"
+  },
+  {
+    "id": 32,
+    "Question": "Which of the following is a complete protein source?",
+    "Choice A": "Lentils",
+    "Choice B": "Quinoa",
+    "Choice C": "White rice",
+    "Choice D": "Corn",
+    "Correct Answer": "Quinoa"
+  },
+  {
+    "id": 33,
+    "Question": "What is the main function of fiber in the diet?",
+    "Choice A": "Provides energy",
+    "Choice B": "Aids in digestion",
+    "Choice C": "Builds muscle",
+    "Choice D": "Regulates body temperature",
+    "Correct Answer": "Aids in digestion"
+  },
+  {
+    "id": 34,
+    "Question": "Which vitamin is essential for calcium absorption?",
+    "Choice A": "Vitamin A",
+    "Choice B": "Vitamin C",
+    "Choice C": "Vitamin D",
+    "Choice D": "Vitamin E",
+    "Correct Answer": "Vitamin D"
+  },
+  {
+    "id": 35,
+    "Question": "Which type of fat is considered the healthiest?",
+    "Choice A": "Saturated fat",
+    "Choice B": "Trans-fat",
+    "Choice C": "Monounsaturated fat",
+    "Choice D": "Polyunsaturated fat",
+    "Correct Answer": "Monounsaturated fat"
+  },
+  {
+    "id": 36,
+    "Question": "What is the recommended daily intake of water for adults?",
+    "Choice A": "1 liter",
+    "Choice B": "2 liters",
+    "Choice C": "3 liters",
+    "Choice D": "4 liters",
+    "Correct Answer": "2 liters"
+  },
+  {
+    "id": 37,
+    "Question": "Which food is a good source of omega-3 fatty acids?",
+    "Choice A": "Beef",
+    "Choice B": "Salmon",
+    "Choice C": "Chicken",
+    "Choice D": "Eggs",
+    "Correct Answer": "Salmon"
+  },
+  {
+    "id": 38,
+    "Question": "What is the main function of carbohydrates in the body?",
+    "Choice A": "Build and repair tissues",
+    "Choice B": "Provide quick energy",
+    "Choice C": "Regulate body temperature",
+    "Choice D": "Enhance body function",
+    "Correct Answer": "Provide quick energy"
+  },
+  {
+    "id": 39,
+    "Question": "What is the role of antioxidants in the body?",
+    "Choice A": "Boost immunity",
+    "Choice B": "Aid digestion",
+    "Choice C": "Improve bone health",
+    "Choice D": "Increase blood pressure",
+    "Correct Answer": "Boost immunity"
+  },
+  {
+    "id": 40,
+    "Question": "Which of the following nutrients is important for the formation of red blood cells?",
+    "Choice A": "Iron",
+    "Choice B": "Zinc",
+    "Choice C": "Magnesium",
+    "Choice D": "Potassium",
+    "Correct Answer": "Iron"
+  },
+  {
+    "id": 41,
+    "Question": "What is the primary source of dietary sodium?",
+    "Choice A": "Fruits",
+    "Choice B": "Vegetables",
+    "Choice C": "Processed foods",
+    "Choice D": "Whole grains",
+    "Correct Answer": "Processed foods"
+  },
+  {
+    "id": 42,
+    "Question": "Which mineral is essential for maintaining healthy bones and teeth?",
+    "Choice A": "Iron",
+    "Choice B": "Calcium",
+    "Choice C": "Potassium",
+    "Choice D": "Sodium",
+    "Correct Answer": "Calcium"
+  },
+  {
+    "id": 43,
+    "Question": "Which of the following foods is a good source of probiotics?",
+    "Choice A": "Yogurt",
+    "Choice B": "Chicken",
+    "Choice C": "Pasta",
+    "Choice D": "Bread",
+    "Correct Answer": "Yogurt"
+  },
+  {
+    "id": 44,
+    "Question": "Which type of diabetes is characterized by insulin resistance?",
+    "Choice A": "Type 1",
+    "Choice B": "Type 2",
+    "Choice C": "Gestational",
+    "Choice D": "Prediabetes",
+    "Correct Answer": "Type 2"
+  },
+  {
+    "id": 45,
+    "Question": "What is the recommended maximum daily intake of added sugars for adults?",
+    "Choice A": "25 grams",
+    "Choice B": "50 grams",
+    "Choice C": "75 grams",
+    "Choice D": "100 grams",
+    "Correct Answer": "50 grams"
+  },
+  {
+    "id": 46,
+    "Question": "Which of the following nutrients is important for healthy skin?",
+    "Choice A": "Vitamin C",
+    "Choice B": "Vitamin D",
+    "Choice C": "Vitamin K",
+    "Choice D": "Vitamin B12",
+    "Correct Answer": "Vitamin C"
+  },
+  {
+    "id": 47,
+    "Question": "What is the primary function of potassium in the body?",
+    "Choice A": "Regulate blood pressure",
+    "Choice B": "Aid digestion",
+    "Choice C": "Strengthen bones",
+    "Choice D": "Enhance muscle growth",
+    "Correct Answer": "Regulate blood pressure"
+  },
+  {
+    "id": 48,
+    "Question": "Which of the following is a good source of soluble fiber?",
+    "Choice A": "Oatmeal",
+    "Choice B": "Broccoli",
+    "Choice C": "Brown rice",
+    "Choice D": "Apples",
+    "Correct Answer": "Oatmeal"
+  },
+  {
+    "id": 49,
+    "Question": "What is the primary source of dietary cholesterol?",
+    "Choice A": "Meat",
+    "Choice B": "Dairy",
+    "Choice C": "Fruits",
+    "Choice D": "Vegetables",
+    "Correct Answer": "Meat"
+  },
+  {
+    "id": 50,
+    "Question": "Which nutrient is important for the formation of collagen?",
+    "Choice A": "Vitamin A",
+    "Choice B": "Vitamin C",
+    "Choice C": "Vitamin D",
+    "Choice D": "Vitamin E",
+    "Correct Answer": "Vitamin C"
+  },
+  {
+    "id": 51,
+    "Question": "Which of the following is a symptom of dehydration?",
+    "Choice A": "Headache",
+    "Choice B": "Increased urine output",
+    "Choice C": "Dry skin",
+    "Choice D": "All of the above",
+    "Correct Answer": "All of the above"
+  },
+  {
+    "id": 52,
+    "Question": "What is the primary function of magnesium in the body?",
+    "Choice A": "Regulate blood sugar levels",
+    "Choice B": "Strengthen bones",
+    "Choice C": "Maintain muscle and nerve function",
+    "Choice D": "Improve vision",
+    "Correct Answer": "Maintain muscle and nerve function"
+  },
+  {
+    "id": 53,
+    "Question": "Which of the following is a good source of non-heme iron?",
+    "Choice A": "Spinach",
+    "Choice B": "Beef",
+    "Choice C": "Chicken",
+    "Choice D": "Salmon",
+    "Correct Answer": "Spinach"
+  },
+  {
+    "id": 54,
+    "Question": "What is the primary function of phosphorus in the body?",
+    "Choice A": "Build and repair tissues",
+    "Choice B": "Regulate fluid balance",
+    "Choice C": "Strengthen bones and teeth",
+    "Choice D": "Enhance brain function",
+    "Correct Answer": "Strengthen bones and teeth"
+  },
+  {
+    "id": 55,
+    "Question": "Which of the following vitamins is fat-soluble?",
+    "Choice A": "Vitamin C",
+    "Choice B": "Vitamin B12",
+    "Choice C": "Vitamin D",
+    "Choice D": "Vitamin B6",
+    "Correct Answer": "Vitamin D"
+  },
+  {
+    "id": 56,
+    "Question": "What is the primary function of zinc in the body?",
+    "Choice A": "Boost immunity",
+    "Choice B": "Enhance vision",
+    "Choice C": "Regulate blood pressure",
+    "Choice D": "Improve bone health",
+    "Correct Answer": "Boost immunity"
+  },
+  {
+    "id": 57,
+    "Question": "Which of the following foods is a good source of Vitamin E?",
+    "Choice A": "Almonds",
+    "Choice B": "Oranges",
+    "Choice C": "Bananas",
+    "Choice D": "Potatoes",
+    "Correct Answer": "Almonds"
+  },
+  {
+    "id": 58,
+    "Question": "What is the main function of B vitamins in the body?",
+    "Choice A": "Enhance muscle growth",
+    "Choice B": "Regulate blood sugar levels",
+    "Choice C": "Convert food into energy",
+    "Choice D": "Improve bone health",
+    "Correct Answer": "Convert food into energy"
+  },
+  {
+    "id": 59,
+    "Question": "Which of the following is a symptom of iron deficiency anemia?",
+    "Choice A": "Fatigue",
+    "Choice B": "Increased energy level",
+    "Choice C": "Pale skin",
+    "Choice D": "Elevated heart rate",
+    "Correct Answer": "Fatigue"
+  },
+  {
+    "id": 60,
+    "Question": "What is the primary function of selenium in the body?",
+    "Choice A": "Regulate blood pressure",
+    "Choice B": "Boost immunity",
+    "Choice C": "Enhance muscle growth",
+    "Choice D": "Improve bone health",
+    "Correct Answer": "Boost immunity"
+  },
+  {
+    "id": 61,
+    "Question": "Which of the following nutrients is important for thyroid function?",
+    "Choice A": "Iodine",
+    "Choice B": "Calcium",
+    "Choice C": "Magnesium",
+    "Choice D": "Potassium",
+    "Correct Answer": "Iodine"
+  },
+  {
+    "id": 62,
+    "Question": "What is the main source of omega-6 fatty acids in the diet?",
+    "Choice A": "Fish",
+    "Choice B": "Nuts and seeds",
+    "Choice C": "Red meat",
+    "Choice D": "Olive oil",
+    "Correct Answer": "Nuts and seeds"
+  },
+  {
+    "id": 63,
+    "Question": "Which of the following foods is a good source of prebiotics?",
+    "Choice A": "Onion",
+    "Choice B": "Cheese",
+    "Choice C": "Chicken",
+    "Choice D": "White rice",
+    "Correct Answer": "Onion"
+  },
+  {
+    "id": 64,
+    "Question": "What is the primary function of vitamin A in the body?",
+    "Choice A": "Enhance vision",
+    "Choice B": "Regulate blood pressure",
+    "Choice C": "Strengthen bones",
+    "Choice D": "Boost immunity",
+    "Correct Answer": "Enhance vision"
+  },
+  {
+    "id": 65,
+    "Question": "Which of the following foods is a good source of vitamin K?",
+    "Choice A": "Carrots",
+    "Choice B": "Spinach",
+    "Choice C": "Apples",
+    "Choice D": "Chicken",
+    "Correct Answer": "Spinach"
+  },
+  {
+    "id": 66,
+    "Question": "What is the primary function of chromium in the body?",
+    "Choice A": "Regulate blood sugar levels",
+    "Choice B": "Strengthen bones",
+    "Choice C": "Enhance muscle growth",
+    "Choice D": "Improve vision",
+    "Correct Answer": "Regulate blood sugar levels"
+  },
+  {
+    "id": 67,
+    "Question": "Which of the following nutrients is important for nerve function?",
+    "Choice A": "Calcium",
+    "Choice B": "Sodium",
+    "Choice C": "Potassium",
+    "Choice D": "Magnesium",
+    "Correct Answer": "Magnesium"
+  },
+  {
+    "id": 68,
+    "Question": "What is the recommended daily intake of sodium for adults?",
+    "Choice A": "1,500 milligrams",
+    "Choice B": "2,000 milligrams",
+    "Choice C": "2,500 milligrams",
+    "Choice D": "3,000 milligrams",
+    "Correct Answer": "1,500 milligrams"
+  },
+  {
+    "id": 69,
+    "Question": "What is the primary function of manganese in the body?",
+    "Choice A": "Regulate blood sugar levels",
+    "Choice B": "Strengthen bones",
+    "Choice C": "Enhance muscle growth",
+    "Choice D": "Improve brain function",
+    "Correct Answer": "Regulate blood sugar levels"
+  },
+  {
+    "id": 70,
+    "Question": "Which of the following foods is a good source of vitamin B12?",
+    "Choice A": "Beef",
+    "Choice B": "Avocado",
+    "Choice C": "Grapes",
+    "Choice D": "Cabbage",
+    "Correct Answer": "Beef"
+  },
+  {
+    "id": 71,
+    "Question": "What is the primary function of iodine in the body?",
+    "Choice A": "Regulate blood pressure",
+    "Choice B": "Enhance muscle growth",
+    "Choice C": "Boost immunity",
+    "Choice D": "Support thyroid function",
+    "Correct Answer": "Support thyroid function"
+  },
+  {
+    "id": 72,
+    "Question": "What is the primary function of folate in the body?",
+    "Choice A": "Enhance muscle growth",
+    "Choice B": "Regulate blood sugar levels",
+    "Choice C": "Aid in DNA synthesis",
+    "Choice D": "Improve bone health",
+    "Correct Answer": "Aid in DNA synthesis"
+  },
+  {
+    "id": 73,
+    "Question": "Which of the following is a symptom of vitamin C deficiency?",
+    "Choice A": "Scurvy",
+    "Choice B": "Rickets",
+    "Choice C": "Pellagra",
+    "Choice D": "Beriberi",
+    "Correct Answer": "Scurvy"
+  },
+  {
+    "id": 74,
+    "Question": "What is the recommended daily intake of fiber for adults?",
+    "Choice A": "10 grams",
+    "Choice B": "20 grams",
+    "Choice C": "30 grams",
+    "Choice D": "40 grams",
+    "Correct Answer": "30 grams"
+  }
+]
