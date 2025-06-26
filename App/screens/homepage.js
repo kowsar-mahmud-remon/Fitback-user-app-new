@@ -32,7 +32,7 @@ const { width, height } = Dimensions.get('window');
 
 
 function Homepage({ navigation, route }) {
-    ///// for Test//////////
+    ///// for Test exam//////////
     const [isInitialized, setIsInitialized] = useState();
     const scaleAnim = useRef(new Animated.Value(0)).current;
 

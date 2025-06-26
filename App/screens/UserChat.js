@@ -1,17 +1,31 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import {
-  Dimensions, FlatList, ActivityIndicator, StyleSheet, SafeAreaView, View, StatusBar, Pressable, Text, ScrollView, TextInput, Image, Linking,
+  Dimensions,
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+  SafeAreaView,
+  View,
+  StatusBar,
+  Pressable,
+  Text,
+  ScrollView,
+  TextInput,
+  Image,
+  Linking,
   Button,
-  TouchableOpacity, Alert, AppState
+  TouchableOpacity,
+  Alert,
+  AppState,
+  Platform
 } from 'react-native';
-
 import colors from '../config/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Modal } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
-// Add these imports at the top
 import * as Notifications from 'expo-notifications';
-
+import * as Device from 'expo-device';
+import Constants from 'expo-constants';
 import {
   collection,
   getDoc,
@@ -25,20 +39,124 @@ import {
 import { db, storage } from "../utils/firebase";
 import * as DocumentPicker from "expo-document-picker";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-
 import { UserContext } from '../../components/CredintailsContext';
-
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// Configure notifications
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+
+    token = (await Notifications.getExpoPushTokenAsync({
+      projectId: Constants.expoConfig.extra.eas.projectId,
+    })).data;
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
+// async function savePushToken(token, userId) {
+//   console.log("token", token, "userid", userId);
+
+//   try {
+//     const response = await fetch('https://chat-server-steel-phi.vercel.app/api/save-push-token', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         userId,
+//         token
+//       }),
+//     });
+//     const data = await response.json();
+//     console.log('Token saved:', data);
+//   } catch (error) {
+//     console.error('Error saving token:', error);
+//   }
+// }
+
+async function savePushToken(token, userId) {
+  console.log("Saving token:", token, "for user:", userId);
+
+  try {
+    const response = await fetch('https://chat-server-steel-phi.vercel.app/api/save-push-token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId,
+        token
+      }),
+    });
+    const data = await response.json();
+    console.log('Token save response:', data);
+    return data;
+  } catch (error) {
+    console.error('Error saving token:', error);
+    throw error;
+  }
+}
+
+async function sendPushNotification(recipientId, title, body, data = {}) {
+  try {
+    const response = await fetch('https://chat-server-steel-phi.vercel.app/api/send-notification', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        recipientId,
+        title,
+        body,
+        data
+      }),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error('Error sending push notification:', error);
+    throw error;
+  }
+}
 
 function UserChat({ navigation, route }) {
   const { testCredentials, setTestCredentials } = useContext(UserContext);
-
   const [lan, setLan] = useState(true);
   const [userDetails, setUserDetails] = useState("");
-
   const userName = route.params.userName;
   const user_FUId = route.params.user_FUId;
   const image = route.params.image;
@@ -60,12 +178,9 @@ function UserChat({ navigation, route }) {
   const [searchText, setSearchText] = useState("");
   const messageRefs = useRef([]);
 
-  // console.log("userChatData", userName, user_FUId, image);
-
   const loadData = async () => {
     try {
       const allData = await AsyncStorage.getItem("healthTrackingData");
-
       if (allData !== null) {
         setUserDetails(JSON.parse(allData));
       }
@@ -80,18 +195,52 @@ function UserChat({ navigation, route }) {
   }, [route.params]);
 
 
-  // Handle notifications setup
+
   useEffect(() => {
+    // loadData();
+
+    // Notification setup
+    // const setupNotifications = async () => {
+    //   const token = await registerForPushNotificationsAsync();
+    //   if (token) {
+    //     await savePushToken(token, user_FUId);
+    //     console.log("tokenn", token, "userId", user_FUId);
+    //   }
+    // };
+    // setupNotifications();
+
     const setupNotifications = async () => {
-      const { status } = await Notifications.requestPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permission not granted for notifications');
+      const token = await registerForPushNotificationsAsync();
+      if (token) {
+        await savePushToken(token, user_FUId); // Make sure user_FUId is correct
       }
     };
     setupNotifications();
-  }, []);
 
-  // Improved message listener with proper notification handling
+
+    // Notification listeners
+    const notificationListener = Notifications.addNotificationReceivedListener(notification => {
+      console.log('Notification received:', notification);
+    });
+
+    const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
+      const data = response.notification.request.content.data;
+      if (data.dietitianId) {
+        navigation.navigate("UserChat", {
+          user_FUId: data.dietitianId,
+          userName: data.dietitianName,
+          image: data.dietitianImage
+        });
+      }
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener);
+      Notifications.removeNotificationSubscription(responseListener);
+    };
+  }, [user_FUId]);
+
+  // Message listener
   useEffect(() => {
     let previousMessagesLength = 0;
     let isMounted = true;
@@ -105,28 +254,18 @@ function UserChat({ navigation, route }) {
           const newMessages = docSnapshot.data().messages || [];
           const pinnedMsgs = docSnapshot.data().pinnedMessages || [];
 
-          // Update states
           setMessages(newMessages);
           setPinnedMessages(pinnedMsgs);
 
-          // Notification logic
           if (newMessages.length > previousMessagesLength) {
             const lastMessage = newMessages[newMessages.length - 1];
-
-            // Only notify if:
-            // 1. Message is from other user
-            // 2. App is in background
-            // 3. Message isn't already seen
             if (lastMessage.senderId !== user_FUId &&
               AppState.currentState !== 'active' &&
               !lastMessage.seen) {
-              showNotification(lastMessage);
+              // showNotification(lastMessage);
             }
           }
-
           previousMessagesLength = newMessages.length;
-        } else {
-          console.error("Conversation does not exist.");
         }
       },
       (error) => {
@@ -140,48 +279,56 @@ function UserChat({ navigation, route }) {
     };
   }, [conversationId, user_FUId]);
 
-  const showNotification = async (message) => {
-    try {
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: `${message.senderName}`,
-          body: message.text || (message.fileUrl ? "Sent an attachment" : "New message"),
-          data: {
-            conversationId,
-            userName,
-            user_FUId,
-            image
-          },
-          sound: true,
-          priority: Notifications.AndroidNotificationPriority.HIGH,
-          threadId: `chat_${conversationId}` // Prevent notification grouping
-        },
-        trigger: null,
-      });
-    } catch (error) {
-      console.error("Error showing notification:", error);
-    }
-  };
+  // const showNotification = async (message) => {
+  //   try {
+  //     await Notifications.scheduleNotificationAsync({
+  //       content: {
+  //         title: `${message.senderName}`,
+  //         body: message.text || (message.fileUrl ? "Sent an attachment" : "New message"),
+  //         data: {
+  //           conversationId,
+  //           userName,
+  //           user_FUId,
+  //           image
+  //         },
+  //         sound: true,
+  //         priority: Notifications.AndroidNotificationPriority.HIGH,
+  //         threadId: `chat_${conversationId}`
+  //       },
+  //       trigger: null,
+  //     });
+  //   } catch (error) {
+  //     console.error("Error showing notification:", error);
+  //   }
+  // };
 
+  // const markMessagesAsSeen = async (messages) => {
+  //   try {
+  //     const conversationRef = doc(db, "conversations", conversationId);
+  //     const conversationSnap = await getDoc(conversationRef);
 
-  // Add this function to show notifications
-  const showLocalNotification = async (message) => {
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: `New message from ${message.senderName}`,
-        body: message.text || "Sent an attachment",
-        data: {
-          conversationId,
-          userName: message.senderName,
-          user_FUId: message.senderId,
-          image: message.senderImg
-        },
-        sound: true,
-        priority: Notifications.AndroidNotificationPriority.HIGH,
-      },
-      trigger: null, // Send immediately
-    });
-  };
+  //     if (conversationSnap.exists()) {
+  //       const messagesToUpdate = messages.filter(
+  //         msg => msg.senderId !== testCredentials?.user_FUId && !msg.seen
+  //       );
+
+  //       if (messagesToUpdate.length > 0) {
+  //         const updatedMessages = messages.map(msg => {
+  //           if (msg.senderId !== testCredentials?.user_FUId && !msg.seen) {
+  //             return { ...msg, seen: true };
+  //           }
+  //           return msg;
+  //         });
+
+  //         await updateDoc(conversationRef, {
+  //           messages: updatedMessages
+  //         });
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error marking messages as seen:", error);
+  //   }
+  // };
 
   useEffect(() => {
     const markMessagesAsSeen = async () => {
@@ -235,34 +382,29 @@ function UserChat({ navigation, route }) {
     };
   }, [conversationId, user_FUId]);
 
+
   const sendMessage = async (fileUrl = null, fileType = null) => {
     if (newMessage.trim() === "" && !fileUrl) return;
 
-    setIsSending(true); // Start sending
+    setIsSending(true);
 
     const messageData = {
       senderId: user_FUId,
       senderName: userName,
       senderImg: image,
-      // text: newMessage || (fileUrl ? "Sent an image/file" : ""),
       text: newMessage || (fileUrl ? "" : ""),
       fileUrl: fileUrl || null,
       fileType: fileType || null,
       time: Timestamp.now(),
-
-      // for seen message
       seen: false,
     };
-
 
     try {
       const conversationRef = doc(db, "conversations", conversationId);
       const conversationSnapshot = await getDoc(conversationRef);
 
       if (conversationSnapshot.exists()) {
-        const conversationData = conversationSnapshot.data();
-        const updatedMessages = [...conversationData.messages, messageData];
-
+        const updatedMessages = [...conversationSnapshot.data().messages, messageData];
         await updateDoc(conversationRef, {
           messages: updatedMessages,
           lastMessageTimestamp: serverTimestamp(),
@@ -274,15 +416,37 @@ function UserChat({ navigation, route }) {
         });
       }
 
+      // Send push notification to all dietitians
+      const notificationData = {
+        conversationId,
+        userId: user_FUId,
+        userName: userName,
+        userImage: image
+      };
+
+      // await sendPushNotification('all-dietitians',
+      //   `New message from ${userName}`,
+      //   newMessage || "Sent an attachment",
+      //   notificationData
+      // );
+
+      // Modify the sendPushNotification call in your sendMessage function
+      await sendPushNotification(
+        'all-dietitians', // Special identifier
+        `New message from ${userName}`,
+        newMessage || "Sent an attachment",
+        notificationData
+      );
+
+
       setNewMessage("");
       setFile(null);
-      setFilePreview(null); // Clear the file preview after sending
-      setSelectedPreview(null); // Clear the file preview after sending
+      setFilePreview(null);
+      setSelectedPreview(null);
     } catch (error) {
       console.error("Error sending message: ", error);
-    }
-    finally {
-      setIsSending(false); // End sending
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -293,7 +457,6 @@ function UserChat({ navigation, route }) {
     }
 
     setIsSending(true);
-
 
     try {
       const response = await fetch(file.uri);
@@ -315,7 +478,7 @@ function UserChat({ navigation, route }) {
         },
         async () => {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          await sendMessage(downloadURL, file.type); // Send the message with file URL
+          await sendMessage(downloadURL, file.type);
         }
       );
     } catch (error) {
@@ -334,21 +497,16 @@ function UserChat({ navigation, route }) {
 
       if (!result.canceled && result.assets && result.assets.length > 0) {
         const pickedFile = result.assets[0];
-
         setFile({
           uri: pickedFile.uri,
           name: pickedFile.name || "file",
           type: pickedFile.mimeType || "application/octet-stream",
         });
-
         setSelectedPreview({
           uri: pickedFile.uri,
           name: pickedFile.name,
           type: pickedFile.mimeType,
         });
-
-      } else {
-        console.error("File pick was not successful:", result);
       }
     } catch (error) {
       console.error("Error picking file:", error);
@@ -358,19 +516,10 @@ function UserChat({ navigation, route }) {
   const formatTime = (timestamp) => {
     if (timestamp) {
       const date = new Date(timestamp.seconds * 1000);
-      const formattedDate = date.toLocaleDateString();
-      const formattedTime = date.toLocaleTimeString();
-      return `${formattedDate} ${formattedTime}`;
+      return date.toLocaleString();
     }
     return "";
   };
-
-  useEffect(() => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollToEnd({ animated: true });
-    }
-  }, [messages]);
-
 
   const handleCallPress = () => {
     Alert.alert(
@@ -392,21 +541,6 @@ function UserChat({ navigation, route }) {
     );
   };
 
-  // Fetch and listen to the pinned message in Firestore
-  // State to hold pinned messages
-  // const [pinnedMessages, setPinnedMessages] = useState([]);
-
-  // Fetch and listen to pinned messages in Firestore
-  useEffect(() => {
-    const unsubscribe = onSnapshot(doc(db, "conversations", conversationId), (doc) => {
-      if (doc.exists()) {
-        setPinnedMessages(doc.data().pinnedMessages || []); // Default to an empty array if no pinnedMessages exist
-      }
-    });
-
-    return () => unsubscribe();
-  }, [conversationId]);
-
   const showPinMenu = (msg) => {
     setSelectedMessage(msg);
     setIsModalVisibleTwo(true);
@@ -414,8 +548,8 @@ function UserChat({ navigation, route }) {
 
   const pinMessage = () => {
     if (selectedMessage) {
-      handlePinMessage(selectedMessage); // Pin the selected message
-      setIsModalVisibleTwo(false); // Close the modal
+      handlePinMessage(selectedMessage);
+      setIsModalVisibleTwo(false);
     }
   };
 
@@ -426,53 +560,40 @@ function UserChat({ navigation, route }) {
 
       if (chatDocSnap.exists()) {
         const existingPinnedMessages = chatDocSnap.data().pinnedMessages || [];
-
-        // Check if the message is already pinned
         const isAlreadyPinned = existingPinnedMessages.some(
           (pinnedMsg) => pinnedMsg.time.seconds === msg.time.seconds && pinnedMsg.senderId === msg.senderId
         );
 
         if (!isAlreadyPinned) {
           await updateDoc(chatDocRef, {
-            pinnedMessages: arrayUnion(msg), // Add the message to the array
+            pinnedMessages: arrayUnion(msg),
           });
         }
-      } else {
-        console.log("No such document!");
       }
     } catch (error) {
       console.error("Error pinning the message: ", error);
     }
   };
 
-  // unpinned message 
   const handleUnpinMessage = async (msg) => {
     try {
       const chatDocRef = doc(db, "conversations", conversationId);
       const chatDocSnap = await getDoc(chatDocRef);
 
       if (chatDocSnap.exists()) {
-        const existingPinnedMessages = chatDocSnap.data().pinnedMessages || [];
-
-        // Filter out the message to be removed
-        const updatedPinnedMessages = existingPinnedMessages.filter(
+        const updatedPinnedMessages = chatDocSnap.data().pinnedMessages.filter(
           (pinnedMsg) =>
             !(pinnedMsg.time.seconds === msg.time.seconds && pinnedMsg.senderId === msg.senderId)
         );
 
-        // Update Firestore with the new array
         await updateDoc(chatDocRef, {
           pinnedMessages: updatedPinnedMessages,
         });
-      } else {
-        console.log("No such document!");
       }
     } catch (error) {
       console.error("Error unpinning the message: ", error);
     }
   };
-
-  // const messageRefs = useRef([]);
 
   const handleScrollToMessage = (msg) => {
     const index = messages.findIndex(
@@ -490,8 +611,6 @@ function UserChat({ navigation, route }) {
       );
     }
   };
-
-  // const [searchText, setSearchText] = useState("");
 
   const filteredMessages = messages.filter((msg) =>
     msg.text?.toLowerCase().includes(searchText.toLowerCase())

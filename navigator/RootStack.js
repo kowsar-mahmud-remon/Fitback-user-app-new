@@ -93,7 +93,7 @@ import WaterIntakePage from '../App/screens/WaterIntakePage';
 import MyReport from '../App/screens/MyReport';
 import ActivitiesTracking from '../App/screens/ActivitiesTracking';
 import AddReview from '../App/screens/AddReview';
-import NotificationTestScreen from '../App/screens/NotificationTestScreen';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -152,7 +152,7 @@ const StackNavigator = () => {
             <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
             <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
             <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-            <Stack.Screen name="NotificationTestScreen" component={NotificationTestScreen} />
+
             <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
             <Stack.Screen name="CustomerReview" component={CustomerReview} />
             <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
@@ -307,7 +307,7 @@ const RootStack = ({ navigation }) => {
                                                 <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
                                                 <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
                                                 <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-                                                <Stack.Screen name="NotificationTestScreen" component={NotificationTestScreen} />
+
                                                 <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
                                                 <Stack.Screen name="CustomerReview" component={CustomerReview} />
                                                 <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
@@ -414,7 +414,7 @@ const RootStack = ({ navigation }) => {
                                                 <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
                                                 <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
                                                 <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-                                                <Stack.Screen name="NotificationTestScreen" component={NotificationTestScreen} />
+
                                                 <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
                                                 <Stack.Screen name="CustomerReview" component={CustomerReview} />
                                                 <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
@@ -489,7 +489,7 @@ const RootStack = ({ navigation }) => {
                                                 <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
                                                 <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
                                                 <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-                                                <Stack.Screen name="NotificationTestScreen" component={NotificationTestScreen} />
+
                                                 <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
                                                 <Stack.Screen name="CustomerReview" component={CustomerReview} />
                                                 <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
