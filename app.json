@@ -2,6 +2,7 @@
   "expo": {
     "name": "FitBack",
     "slug": "fitback-user-android-app",
+    "owner": "kowsar.remon",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./logo/icon.png",
@@ -25,6 +26,7 @@
     "android": {
       "package": "com.qitca.fitback",
       "googleServicesFile": "./google-services-user.json",
+      "useNextNotificationsApi": true,
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./logo/adaptive-icon.png",
@@ -35,6 +37,7 @@
     "web": {
       "favicon": "./logo/favicon.png"
     },
+    "plugins": ["expo-notifications"],
     "extra": {
       "eas": {
         "projectId": "9febfa31-c651-40f0-927c-ad1227d7e9f5"
