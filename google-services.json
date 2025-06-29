@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "38372124480",
+    "project_id": "nextjs-firebase-chat-app",
+    "storage_bucket": "nextjs-firebase-chat-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38372124480:android:eb02f70d9129d65d7a3ca5",
+        "android_client_info": {
+          "package_name": "com.qitca.dietitian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38372124480-0ma30mte1mqe4907nvpgnd0h0an37kco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDachcCLPsCuyeqKZ3mHH0DcS855AsaMcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38372124480-0ma30mte1mqe4907nvpgnd0h0an37kco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38372124480:android:04965257664169807a3ca5",
+        "android_client_info": {
+          "package_name": "com.qitca.fitback"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38372124480-0ma30mte1mqe4907nvpgnd0h0an37kco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDachcCLPsCuyeqKZ3mHH0DcS855AsaMcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38372124480-0ma30mte1mqe4907nvpgnd0h0an37kco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

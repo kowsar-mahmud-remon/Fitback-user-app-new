@@ -24,6 +24,7 @@
     },
     "android": {
       "package": "com.qitca.fitback",
+      "googleServicesFile": "./google-services-user.json",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./logo/adaptive-icon.png",
