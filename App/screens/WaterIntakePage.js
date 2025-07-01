@@ -17,43 +17,43 @@ import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 import { WebView } from 'react-native-webview';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import * as Notifications from 'expo-notifications';
+// import * as Notifications from 'expo-notifications';
 // import * as Permissions from 'expo-permissions';
-import * as Device from 'expo-device';
+// import * as Device from 'expo-device';
 
 const { width, height } = Dimensions.get('window');
 
 // Notification handler
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
+// Notifications.setNotificationHandler({
+//   handleNotification: async () => ({
+//     shouldShowAlert: true,
+//     shouldPlaySound: false,
+//     shouldSetBadge: false,
+//   }),
+// });
 
 function WaterIntakePage({ navigation, route }) {
   // for notification permission 
-  useEffect(() => {
-    registerForPushNotificationsAsync();
-  }, []);
+  // useEffect(() => {
+  //   registerForPushNotificationsAsync();
+  // }, []);
 
-  const registerForPushNotificationsAsync = async () => {
-    if (Device.isDevice) {
-      const { status: existingStatus } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-        alert('Failed to get push token for push notification!');
-        return;
-      }
-    } else {
-      alert('Must use physical device for Push Notifications');
-    }
-  };
+  // const registerForPushNotificationsAsync = async () => {
+  //   if (Device.isDevice) {
+  //     const { status: existingStatus } = await Notifications.getPermissionsAsync();
+  //     let finalStatus = existingStatus;
+  //     if (existingStatus !== 'granted') {
+  //       const { status } = await Notifications.requestPermissionsAsync();
+  //       finalStatus = status;
+  //     }
+  //     if (finalStatus !== 'granted') {
+  //       alert('Failed to get push token for push notification!');
+  //       return;
+  //     }
+  //   } else {
+  //     alert('Must use physical device for Push Notifications');
+  //   }
+  // };
 
 
 

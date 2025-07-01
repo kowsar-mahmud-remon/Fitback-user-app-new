@@ -6,7 +6,7 @@ import * as TaskManager from 'expo-task-manager';
 
 import RootStack from './navigator/RootStack';
 
-import * as Notifications from 'expo-notifications';
+// import * as Notifications from 'expo-notifications';
 
 //Async-Storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -73,16 +73,16 @@ export default function App() {
   const [getpromo, setGetpromo] = useState(true);
   const [promo, setPromo] = useState([]);
 
-  useEffect(() => {
-    const requestPermissions = async () => {
-      const { status } = await Notifications.requestPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Please enable notifications to get reminders!');
-      }
-    };
+  // useEffect(() => {
+  //   const requestPermissions = async () => {
+  //     const { status } = await Notifications.requestPermissionsAsync();
+  //     if (status !== 'granted') {
+  //       alert('Please enable notifications to get reminders!');
+  //     }
+  //   };
 
-    requestPermissions();
-  }, []);
+  //   requestPermissions();
+  // }, []);
 
 
   // do you task here
