@@ -109,12 +109,11 @@ async function registerForPushNotificationsAsync() {
 //   }
 // }
 
-async function savePushToken(token, userId, isProduction) {
+async function savePushToken(token, userId) {
   console.log("Saving token:", token, "for user:", userId);
 
   // Add this line to detect production builds
-  // const isProduction = !Constants.executionEnvironment === 'storeClient';
-  // const isProduction = Constants.executionEnvironment === 'standalone';
+  const isProduction = !Constants.executionEnvironment === 'storeClient';
 
   try {
     const response = await fetch('https://chat-server-steel-phi.vercel.app/api/save-push-token', {
@@ -214,21 +213,12 @@ function UserChat({ navigation, route }) {
     // };
     // setupNotifications();
 
-    // const setupNotifications = async () => {
-    //   const token = await registerForPushNotificationsAsync();
-    //   if (token) {
-    //     await savePushToken(token, user_FUId);
-    //   }
-    // };
-
     const setupNotifications = async () => {
       const token = await registerForPushNotificationsAsync();
       if (token) {
-        const isProduction = Constants.executionEnvironment === 'standalone';
-        await savePushToken(token, user_FUId, isProduction);
+        await savePushToken(token, user_FUId); // Make sure user_FUId is correct
       }
     };
-
     setupNotifications();
 
 
