@@ -333,7 +333,7 @@ function PlaceOrder({ navigation, route }) {
 
     const options = [
         { label: 'Cash on Delivery', value: 'Cash_on_delivery' },
-        { label: 'Online Payment', value: 'Online Payment' }
+        // { label: 'Online Payment', value: 'Online Payment' }
     ];
 
     //   const options2 = [

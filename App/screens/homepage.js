@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState, useContext, useCallback } from 'rea
 import { FlatList, ScrollView, ActivityIndicator, Animated, Dimensions, StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform, StatusBar, Image, Button, TextInput, Pressable, Alert, Modal, TouchableOpacity, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-// import * as Notifications from 'expo-notifications';
-// import { differenceInDays } from 'date-fns';
+import * as Notifications from 'expo-notifications';
+import { differenceInDays } from 'date-fns';
 
 
 import InputSpinner from "react-native-input-spinner";
@@ -1199,33 +1199,33 @@ function Homepage({ navigation, route }) {
 
     // wehight and medical history notification 
     // Check and notify once user data is loaded
-    // useEffect(() => {
-    //     const checkWeightUpdateAndNotify = async () => {
-    //         if (!userData?.weight || userData.weight.length === 0) return;
+    useEffect(() => {
+        const checkWeightUpdateAndNotify = async () => {
+            if (!userData?.weight || userData.weight.length === 0) return;
 
-    //         // Get latest weight entry by timestamp
-    //         const latest = userData.weight.reduce((a, b) =>
-    //             new Date(a.timestamp) > new Date(b.timestamp) ? a : b
-    //         );
+            // Get latest weight entry by timestamp
+            const latest = userData.weight.reduce((a, b) =>
+                new Date(a.timestamp) > new Date(b.timestamp) ? a : b
+            );
 
-    //         const days = differenceInDays(new Date(), new Date(latest.timestamp));
+            const days = differenceInDays(new Date(), new Date(latest.timestamp));
 
-    //         if (days >= 14) {
-    //             await Notifications.scheduleNotificationAsync({
-    //                 content: {
-    //                     title: 'Health Reminder',
-    //                     body: 'Please update your weight and medical history.',
-    //                     sound: true,
-    //                 },
-    //                 trigger: null, // send immediately
-    //             });
-    //         }
-    //     };
+            if (days >= 14) {
+                await Notifications.scheduleNotificationAsync({
+                    content: {
+                        title: 'Health Reminder',
+                        body: 'Please update your weight and medical history.',
+                        sound: true,
+                    },
+                    trigger: null, // send immediately
+                });
+            }
+        };
 
-    //     if (userData) {
-    //         checkWeightUpdateAndNotify();
-    //     }
-    // }, [userData]);
+        if (userData) {
+            checkWeightUpdateAndNotify();
+        }
+    }, [userData]);
 
 
     const skip = () => {

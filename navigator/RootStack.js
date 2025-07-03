@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //Credentials-Context
 import { CredentialsContext } from '../components/CredintailsContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Credentials-Context
 import { WellcomeContext } from '../components/CredintailsContext';
@@ -205,341 +206,495 @@ const StackNavigator = () => {
 };
 
 const RootStack = ({ navigation }) => {
+    const { storeWellcome, setStoreWellcome } = useContext(WellcomeContext);
+    const { storeCredentials } = useContext(CredentialsContext);
+    const [hasCheckedOnboarding, setHasCheckedOnboarding] = useState(false);
+
+    useEffect(() => {
+        const checkOnboarding = async () => {
+            try {
+                const value = await AsyncStorage.getItem('qwikmedicwellcome3page');
+                if (value === null) {
+                    setStoreWellcome(false);
+                } else {
+                    setStoreWellcome(true);
+                }
+            } catch (error) {
+                console.error(error);
+                setStoreWellcome(true);
+            }
+            setHasCheckedOnboarding(true);
+        };
+
+        if (!hasCheckedOnboarding) {
+            checkOnboarding();
+        }
+    }, [hasCheckedOnboarding, setStoreWellcome]);
+
+    const linking = {
+        prefixes: ['paymentapp://'],
+        config: {
+            screens: {
+                Success: 'success',
+            },
+        },
+    };
+
+    if (!hasCheckedOnboarding) {
+        return null;
+    }
+
+    if (!storeWellcome) {
+        return (
+            <NavigationContainer>
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Firstslider" component={Firstslider} />
+                    <Stack.Screen name="Secondslide" component={Secondslide} />
+                    <Stack.Screen name="Thirdslide" component={Thirdslide} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        );
+    }
+
+
     return (
-        <WellcomeContext.Consumer>
-            {({ storeWellcome }) => (
-                <>
-                    {storeWellcome ? (
+        // <WellcomeContext.Consumer>
+        //     {({ storeWellcome }) => (
+        //         <>
+        //             {storeWellcome ? (
 
-                        <CredentialsContext.Consumer>
-                            {({ storeCredentials }) => (
-                                <NavigationContainer
-                                    linking={linking}
+        //                 <CredentialsContext.Consumer>
+        //                     {({ storeCredentials }) => (
+        //                         <NavigationContainer
+        //                             linking={linking}
 
-                                // backBehavior='initialRoute'
-                                // initialRouteName='Root'
+        //                         // backBehavior='initialRoute'
+        //                         // initialRouteName='Root'
 
-                                >
+        //                         >
 
-                                    {storeCredentials ? (
-                                        <>
-
-
-                                            <Drawer.Navigator
-                                                options={{ unmountOnBlur: true, lazy: true, drawerIcon: { focused: true, color: 'black', size: 41 } }}
-
-                                                drawerIcon={null}
-                                                style={{ display: "none" }}
-
-                                                screenOptions={{ drawerPosition: "right", swipeEnabled: false, unmountOnBlur: true, lazy: true }}
-
-                                                drawerContent={(props) => <CustomSidebarMenu {...props} />}
-
-                                            >
+        //                             {storeCredentials ? (
+        //                                 <>
 
 
-                                                {/* <Drawer.Screen key='stackNavigator' name="StackNavigator" component={StackNavigator} /> */}
+        //                                     <Drawer.Navigator
+        //                                         options={{ unmountOnBlur: true, lazy: true, drawerIcon: { focused: true, color: 'black', size: 41 } }}
 
-                                                <Drawer.Screen key='stackNavigator' name='StackNavigator' component={StackNavigator} style={{ marginTop: 100 }}
-                                                    options={{
-                                                        headerShown: false,
-                                                        drawerLabel: () => null,
-                                                        title: null,
-                                                        drawerIcon: () => null
-                                                    }}
+        //                                         drawerIcon={null}
+        //                                         style={{ display: "none" }}
 
-                                                />
-                                                {/* <Drawer.Screen key='customSidebarMenu' name='CustomSidebarMenu' component={CustomSidebarMenu} style={{marginTop:100}}
-                                                        options={{
-                                                            drawerLabel: () => null,
-                                                            title: null,
-                                                            drawerIcon: () => null,
-                                                            
-                                                        }}
-                                                    /> */}
-                                            </Drawer.Navigator>
+        //                                         screenOptions={{ drawerPosition: "right", swipeEnabled: false, unmountOnBlur: true, lazy: true }}
 
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Stack.Navigator
-                                                screenOptions={{
-                                                    headerStyle: {
-                                                        backgroundColor: "transparent"
-                                                    },
-                                                    headerTintColor: "#F0F0EE",
-                                                    headerTitle: "",
-                                                    headerTransparent: true,
-                                                    headerLeftContainerStyle: {
-                                                        paddingLeft: 20
-                                                    }
-                                                }}
-                                                initialRouteName="Firstslider"
+        //                                         drawerContent={(props) => <CustomSidebarMenu {...props} />}
 
-                                            >
-
-                                                <Stack.Screen name="Login" component={Login} />
-                                                <Stack.Screen name="Signup" component={Signup} />
-                                                <Stack.Screen name="Otpinput" component={Otpinput} />
-                                                <Stack.Screen name="Repassword" component={Repassword} />
-                                                <Stack.Screen name="Homepage" component={Homepage} />
-
-                                                <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
-                                                <Stack.Screen name="Contuctus" component={Contuctus} />
-                                                <Stack.Screen name="Settings" component={Settings} />
-                                                <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
-                                                <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
-                                                <Stack.Screen name="UserProfile" component={UserProfile} />
-                                                <Stack.Screen name="WeightTracker" component={WeightTracker} />
-                                                <Stack.Screen name="MyReport" component={MyReport} />
-                                                <Stack.Screen name="AddReview" component={AddReview} />
-                                                <Stack.Screen name="BmiTracker" component={BmiTracker} />
-                                                <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
-                                                <Stack.Screen name="Success" component={SuccessScreen} />
-                                                <Stack.Screen name="BpTracker" component={BpTracker} />
-                                                <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
-                                                <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
-                                                <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
-                                                <Stack.Screen name="Chat" component={Chat} />
-                                                <Stack.Screen name="UserChat" component={UserChat} />
-                                                <Stack.Screen name="TestPage" component={TestPage} />
-                                                <Stack.Screen name="TestResultPage" component={TestResultPage} />
-                                                <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
-                                                <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
-                                                <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-
-                                                <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
-                                                <Stack.Screen name="CustomerReview" component={CustomerReview} />
-                                                <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
-                                                <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
-                                                <Stack.Screen name="HealthTracking" component={HealthTracking} />
-                                                <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
-                                                <Stack.Screen name="CheckWellness" component={CheckWellness} />
-                                                <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
-                                                <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
-                                                <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
-                                                <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
-                                                <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
-                                                <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
-                                                <Stack.Screen name="ViewImg" component={ViewImg} />
-                                                <Stack.Screen name="Cart" component={Cart} />
-                                                <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
-                                                <Stack.Screen name="Heathmart" component={Heathmart} />
-                                                <Stack.Screen name="Notification" component={Notification} />
-                                                {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
-                                                {/* <Stack.Screen name="Services" component={Services} /> */}
-                                                <Stack.Screen name="Health" component={Health} />
-                                                <Stack.Screen name="Favourites" component={Favourites} />
-                                                <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
-                                                {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
-
-                                                <Stack.Screen name="HelpFQ" component={HelpFQ} />
-                                                {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
-                                                <Stack.Screen name="TermsConditions" component={TermsConditions} />
+        //                                     >
 
 
-                                                <Stack.Screen name="MedRequest" component={MedRequest} />
-                                                <Stack.Screen name="MyQcoins" component={MyQcoins} />
-                                                {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
-                                                {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
-                                            </Stack.Navigator>
+        //                                         {/* <Drawer.Screen key='stackNavigator' name="StackNavigator" component={StackNavigator} /> */}
+
+        //                                         <Drawer.Screen key='stackNavigator' name='StackNavigator' component={StackNavigator} style={{ marginTop: 100 }}
+        //                                             options={{
+        //                                                 headerShown: false,
+        //                                                 drawerLabel: () => null,
+        //                                                 title: null,
+        //                                                 drawerIcon: () => null
+        //                                             }}
+
+        //                                         />
+        //                                         {/* <Drawer.Screen key='customSidebarMenu' name='CustomSidebarMenu' component={CustomSidebarMenu} style={{marginTop:100}}
+        //                                                 options={{
+        //                                                     drawerLabel: () => null,
+        //                                                     title: null,
+        //                                                     drawerIcon: () => null,
+
+        //                                                 }}
+        //                                             /> */}
+        //                                     </Drawer.Navigator>
+
+        //                                 </>
+        //                             ) : (
+        //                                 <>
+        //                                     <Stack.Navigator
+        //                                         screenOptions={{
+        //                                             headerStyle: {
+        //                                                 backgroundColor: "transparent"
+        //                                             },
+        //                                             headerTintColor: "#F0F0EE",
+        //                                             headerTitle: "",
+        //                                             headerTransparent: true,
+        //                                             headerLeftContainerStyle: {
+        //                                                 paddingLeft: 20
+        //                                             }
+        //                                         }}
+        //                                         initialRouteName="Firstslider"
+
+        //                                     >
+
+        //                                         <Stack.Screen name="Login" component={Login} />
+        //                                         <Stack.Screen name="Signup" component={Signup} />
+        //                                         <Stack.Screen name="Otpinput" component={Otpinput} />
+        //                                         <Stack.Screen name="Repassword" component={Repassword} />
+        //                                         <Stack.Screen name="Homepage" component={Homepage} />
+
+        //                                         <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
+        //                                         <Stack.Screen name="Contuctus" component={Contuctus} />
+        //                                         <Stack.Screen name="Settings" component={Settings} />
+        //                                         <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
+        //                                         <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
+        //                                         <Stack.Screen name="UserProfile" component={UserProfile} />
+        //                                         <Stack.Screen name="WeightTracker" component={WeightTracker} />
+        //                                         <Stack.Screen name="MyReport" component={MyReport} />
+        //                                         <Stack.Screen name="AddReview" component={AddReview} />
+        //                                         <Stack.Screen name="BmiTracker" component={BmiTracker} />
+        //                                         <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
+        //                                         <Stack.Screen name="Success" component={SuccessScreen} />
+        //                                         <Stack.Screen name="BpTracker" component={BpTracker} />
+        //                                         <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
+        //                                         <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
+        //                                         <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
+        //                                         <Stack.Screen name="Chat" component={Chat} />
+        //                                         <Stack.Screen name="UserChat" component={UserChat} />
+        //                                         <Stack.Screen name="TestPage" component={TestPage} />
+        //                                         <Stack.Screen name="TestResultPage" component={TestResultPage} />
+        //                                         <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
+        //                                         <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
+        //                                         <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
+
+        //                                         <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
+        //                                         <Stack.Screen name="CustomerReview" component={CustomerReview} />
+        //                                         <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
+        //                                         <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
+        //                                         <Stack.Screen name="HealthTracking" component={HealthTracking} />
+        //                                         <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
+        //                                         <Stack.Screen name="CheckWellness" component={CheckWellness} />
+        //                                         <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
+        //                                         <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
+        //                                         <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
+        //                                         <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
+        //                                         <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
+        //                                         <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
+        //                                         <Stack.Screen name="ViewImg" component={ViewImg} />
+        //                                         <Stack.Screen name="Cart" component={Cart} />
+        //                                         <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+        //                                         <Stack.Screen name="Heathmart" component={Heathmart} />
+        //                                         <Stack.Screen name="Notification" component={Notification} />
+        //                                         {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
+        //                                         {/* <Stack.Screen name="Services" component={Services} /> */}
+        //                                         <Stack.Screen name="Health" component={Health} />
+        //                                         <Stack.Screen name="Favourites" component={Favourites} />
+        //                                         <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
+        //                                         {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
+
+        //                                         <Stack.Screen name="HelpFQ" component={HelpFQ} />
+        //                                         {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
+        //                                         <Stack.Screen name="TermsConditions" component={TermsConditions} />
 
 
-                                        </>
-                                    )
-                                    }
+        //                                         <Stack.Screen name="MedRequest" component={MedRequest} />
+        //                                         <Stack.Screen name="MyQcoins" component={MyQcoins} />
+        //                                         {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
+        //                                         {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
+        //                                     </Stack.Navigator>
 
 
-
-
-                                </NavigationContainer>
-                            )}
-                        </CredentialsContext.Consumer>
-
-                    ) : (
-
-                        <CredentialsContext.Consumer>
-                            {({ storeCredentials }) => (
-                                <NavigationContainer linking={linking}>
-                                    <Stack.Navigator
-                                        screenOptions={{
-                                            headerStyle: {
-                                                backgroundColor: "transparent"
-                                            },
-                                            headerTintColor: "#F0F0EE",
-                                            headerTitle: "",
-                                            headerTransparent: true,
-                                            headerLeftContainerStyle: {
-                                                paddingLeft: 20
-                                            }
-                                        }}
-                                        initialRouteName="Firstslider"
-
-                                    >
-                                        {storeCredentials ? (
-                                            <>
-
-                                                <Stack.Screen name="Firstslider" component={Firstslider} />
-                                                <Stack.Screen name="Secondslide" component={Secondslide} />
-                                                <Stack.Screen name="Thirdslide" component={Thirdslide} />
-
-                                                <Stack.Screen name="Login" component={Login} />
-                                                <Stack.Screen name="Signup" component={Signup} />
-                                                <Stack.Screen name="Otpinput" component={Otpinput} />
-                                                <Stack.Screen name="Repassword" component={Repassword} />
-
-                                                <Stack.Screen name="Homepage" component={Homepage} />
-
-
-                                                <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
-                                                <Stack.Screen name="Contuctus" component={Contuctus} />
-                                                <Stack.Screen name="Settings" component={Settings} />
-                                                <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
-                                                <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
-                                                <Stack.Screen name="UserProfile" component={UserProfile} />
-                                                <Stack.Screen name="WeightTracker" component={WeightTracker} />
-                                                <Stack.Screen name="MyReport" component={MyReport} />
-                                                <Stack.Screen name="AddReview" component={AddReview} />
-                                                <Stack.Screen name="BmiTracker" component={BmiTracker} />
-                                                <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
-                                                <Stack.Screen name="Success" component={SuccessScreen} />
-                                                <Stack.Screen name="BpTracker" component={BpTracker} />
-                                                <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
-                                                <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
-                                                <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
-                                                <Stack.Screen name="Chat" component={Chat} />
-                                                <Stack.Screen name="UserChat" component={UserChat} />
-                                                <Stack.Screen name="TestPage" component={TestPage} />
-                                                <Stack.Screen name="TestResultPage" component={TestResultPage} />
-                                                <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
-                                                <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
-                                                <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-
-                                                <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
-                                                <Stack.Screen name="CustomerReview" component={CustomerReview} />
-                                                <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
-                                                <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
-                                                <Stack.Screen name="HealthTracking" component={HealthTracking} />
-                                                <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
-                                                <Stack.Screen name="CheckWellness" component={CheckWellness} />
-                                                <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
-                                                <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
-                                                <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
-                                                <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
-                                                <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
-
-                                                <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
-                                                <Stack.Screen name="ViewImg" component={ViewImg} />
-                                                <Stack.Screen name="Cart" component={Cart} />
-                                                <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
-                                                <Stack.Screen name="Heathmart" component={Heathmart} />
-                                                <Stack.Screen name="Notification" component={Notification} />
-                                                {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
-                                                {/* <Stack.Screen name="Services" component={Services} /> */}
-                                                <Stack.Screen name="Health" component={Health} />
-                                                <Stack.Screen name="Favourites" component={Favourites} />
-                                                <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
-                                                {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
-                                                <Stack.Screen name="HelpFQ" component={HelpFQ} />
-                                                {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
-                                                <Stack.Screen name="TermsConditions" component={TermsConditions} />
-
-
-                                                <Stack.Screen name="MedRequest" component={MedRequest} />
-                                                <Stack.Screen name="MyQcoins" component={MyQcoins} />
-                                                {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
-                                                {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
-
-                                            </>
-                                        ) : (
-                                            <>
-
-
-                                                <Stack.Screen name="Login" component={Login} />
-                                                <Stack.Screen name="Firstslider" component={Firstslider} />
-                                                <Stack.Screen name="Secondslide" component={Secondslide} />
-                                                <Stack.Screen name="Thirdslide" component={Thirdslide} />
-
-
-                                                <Stack.Screen name="Signup" component={Signup} />
-                                                <Stack.Screen name="Otpinput" component={Otpinput} />
-                                                <Stack.Screen name="Repassword" component={Repassword} />
-                                                <Stack.Screen name="Homepage" component={Homepage} />
-
-                                                <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
-                                                <Stack.Screen name="Contuctus" component={Contuctus} />
-                                                <Stack.Screen name="Settings" component={Settings} />
-                                                <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
-                                                <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
-                                                <Stack.Screen name="UserProfile" component={UserProfile} />
-                                                <Stack.Screen name="WeightTracker" component={WeightTracker} />
-                                                <Stack.Screen name="MyReport" component={MyReport} />
-                                                <Stack.Screen name="AddReview" component={AddReview} />
-                                                <Stack.Screen name="BmiTracker" component={BmiTracker} />
-                                                <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
-                                                <Stack.Screen name="Success" component={SuccessScreen} />
-                                                <Stack.Screen name="BpTracker" component={BpTracker} />
-                                                <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
-                                                <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
-                                                <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
-                                                <Stack.Screen name="Chat" component={Chat} />
-                                                <Stack.Screen name="UserChat" component={UserChat} />
-                                                <Stack.Screen name="TestPage" component={TestPage} />
-                                                <Stack.Screen name="TestResultPage" component={TestResultPage} />
-                                                <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
-                                                <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
-                                                <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
-
-                                                <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
-                                                <Stack.Screen name="CustomerReview" component={CustomerReview} />
-                                                <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
-                                                <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
-                                                <Stack.Screen name="HealthTracking" component={HealthTracking} />
-                                                <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
-                                                <Stack.Screen name="CheckWellness" component={CheckWellness} />
-                                                <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
-                                                <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
-                                                <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
-                                                <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
-                                                <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
-                                                <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
-                                                <Stack.Screen name="ViewImg" component={ViewImg} />
-                                                <Stack.Screen name="Cart" component={Cart} />
-                                                <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
-                                                <Stack.Screen name="Heathmart" component={Heathmart} />
-                                                <Stack.Screen name="Notification" component={Notification} />
-                                                {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
-                                                {/* <Stack.Screen name="Services" component={Services} /> */}
-                                                <Stack.Screen name="Health" component={Health} />
-                                                <Stack.Screen name="Favourites" component={Favourites} />
-                                                <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
-                                                {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
-                                                <Stack.Screen name="HelpFQ" component={HelpFQ} />
-                                                {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
-                                                <Stack.Screen name="TermsConditions" component={TermsConditions} />
-
-
-                                                <Stack.Screen name="MedRequest" component={MedRequest} />
-                                                <Stack.Screen name="MyQcoins" component={MyQcoins} />
-                                                {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
-                                                {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
-
-                                            </>
-                                        )
-                                        }
+        //                                 </>
+        //                             )
+        //                             }
 
 
 
-                                    </Stack.Navigator>
-                                </NavigationContainer>
-                            )}
-                        </CredentialsContext.Consumer>
-                    )}
-                </>
+
+        //                         </NavigationContainer>
+        //                     )}
+        //                 </CredentialsContext.Consumer>
+
+        //             ) : (
+
+        //                 <CredentialsContext.Consumer>
+        //                     {({ storeCredentials }) => (
+        //                         <NavigationContainer linking={linking}>
+        //                             <Stack.Navigator
+        //                                 screenOptions={{
+        //                                     headerStyle: {
+        //                                         backgroundColor: "transparent"
+        //                                     },
+        //                                     headerTintColor: "#F0F0EE",
+        //                                     headerTitle: "",
+        //                                     headerTransparent: true,
+        //                                     headerLeftContainerStyle: {
+        //                                         paddingLeft: 20
+        //                                     }
+        //                                 }}
+        //                                 initialRouteName="Firstslider"
+
+        //                             >
+        //                                 {storeCredentials ? (
+        //                                     <>
+
+        //                                         <Stack.Screen name="Firstslider" component={Firstslider} />
+        //                                         <Stack.Screen name="Secondslide" component={Secondslide} />
+        //                                         <Stack.Screen name="Thirdslide" component={Thirdslide} />
+
+        //                                         <Stack.Screen name="Login" component={Login} />
+        //                                         <Stack.Screen name="Signup" component={Signup} />
+        //                                         <Stack.Screen name="Otpinput" component={Otpinput} />
+        //                                         <Stack.Screen name="Repassword" component={Repassword} />
+
+        //                                         <Stack.Screen name="Homepage" component={Homepage} />
+
+
+        //                                         <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
+        //                                         <Stack.Screen name="Contuctus" component={Contuctus} />
+        //                                         <Stack.Screen name="Settings" component={Settings} />
+        //                                         <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
+        //                                         <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
+        //                                         <Stack.Screen name="UserProfile" component={UserProfile} />
+        //                                         <Stack.Screen name="WeightTracker" component={WeightTracker} />
+        //                                         <Stack.Screen name="MyReport" component={MyReport} />
+        //                                         <Stack.Screen name="AddReview" component={AddReview} />
+        //                                         <Stack.Screen name="BmiTracker" component={BmiTracker} />
+        //                                         <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
+        //                                         <Stack.Screen name="Success" component={SuccessScreen} />
+        //                                         <Stack.Screen name="BpTracker" component={BpTracker} />
+        //                                         <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
+        //                                         <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
+        //                                         <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
+        //                                         <Stack.Screen name="Chat" component={Chat} />
+        //                                         <Stack.Screen name="UserChat" component={UserChat} />
+        //                                         <Stack.Screen name="TestPage" component={TestPage} />
+        //                                         <Stack.Screen name="TestResultPage" component={TestResultPage} />
+        //                                         <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
+        //                                         <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
+        //                                         <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
+
+        //                                         <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
+        //                                         <Stack.Screen name="CustomerReview" component={CustomerReview} />
+        //                                         <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
+        //                                         <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
+        //                                         <Stack.Screen name="HealthTracking" component={HealthTracking} />
+        //                                         <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
+        //                                         <Stack.Screen name="CheckWellness" component={CheckWellness} />
+        //                                         <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
+        //                                         <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
+        //                                         <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
+        //                                         <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
+        //                                         <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
+
+        //                                         <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
+        //                                         <Stack.Screen name="ViewImg" component={ViewImg} />
+        //                                         <Stack.Screen name="Cart" component={Cart} />
+        //                                         <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+        //                                         <Stack.Screen name="Heathmart" component={Heathmart} />
+        //                                         <Stack.Screen name="Notification" component={Notification} />
+        //                                         {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
+        //                                         {/* <Stack.Screen name="Services" component={Services} /> */}
+        //                                         <Stack.Screen name="Health" component={Health} />
+        //                                         <Stack.Screen name="Favourites" component={Favourites} />
+        //                                         <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
+        //                                         {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
+        //                                         <Stack.Screen name="HelpFQ" component={HelpFQ} />
+        //                                         {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
+        //                                         <Stack.Screen name="TermsConditions" component={TermsConditions} />
+
+
+        //                                         <Stack.Screen name="MedRequest" component={MedRequest} />
+        //                                         <Stack.Screen name="MyQcoins" component={MyQcoins} />
+        //                                         {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
+        //                                         {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
+
+        //                                     </>
+        //                                 ) : (
+        //                                     <>
+
+
+        //                                         <Stack.Screen name="Login" component={Login} />
+        //                                         <Stack.Screen name="Firstslider" component={Firstslider} />
+        //                                         <Stack.Screen name="Secondslide" component={Secondslide} />
+        //                                         <Stack.Screen name="Thirdslide" component={Thirdslide} />
+
+
+        //                                         <Stack.Screen name="Signup" component={Signup} />
+        //                                         <Stack.Screen name="Otpinput" component={Otpinput} />
+        //                                         <Stack.Screen name="Repassword" component={Repassword} />
+        //                                         <Stack.Screen name="Homepage" component={Homepage} />
+
+        //                                         <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
+        //                                         <Stack.Screen name="Contuctus" component={Contuctus} />
+        //                                         <Stack.Screen name="Settings" component={Settings} />
+        //                                         <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
+        //                                         <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
+        //                                         <Stack.Screen name="UserProfile" component={UserProfile} />
+        //                                         <Stack.Screen name="WeightTracker" component={WeightTracker} />
+        //                                         <Stack.Screen name="MyReport" component={MyReport} />
+        //                                         <Stack.Screen name="AddReview" component={AddReview} />
+        //                                         <Stack.Screen name="BmiTracker" component={BmiTracker} />
+        //                                         <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
+        //                                         <Stack.Screen name="Success" component={SuccessScreen} />
+        //                                         <Stack.Screen name="BpTracker" component={BpTracker} />
+        //                                         <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
+        //                                         <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
+        //                                         <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
+        //                                         <Stack.Screen name="Chat" component={Chat} />
+        //                                         <Stack.Screen name="UserChat" component={UserChat} />
+        //                                         <Stack.Screen name="TestPage" component={TestPage} />
+        //                                         <Stack.Screen name="TestResultPage" component={TestResultPage} />
+        //                                         <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
+        //                                         <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
+        //                                         <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
+
+        //                                         <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
+        //                                         <Stack.Screen name="CustomerReview" component={CustomerReview} />
+        //                                         <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
+        //                                         <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
+        //                                         <Stack.Screen name="HealthTracking" component={HealthTracking} />
+        //                                         <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
+        //                                         <Stack.Screen name="CheckWellness" component={CheckWellness} />
+        //                                         <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
+        //                                         <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
+        //                                         <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
+        //                                         <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
+        //                                         <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
+        //                                         <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
+        //                                         <Stack.Screen name="ViewImg" component={ViewImg} />
+        //                                         <Stack.Screen name="Cart" component={Cart} />
+        //                                         <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+        //                                         <Stack.Screen name="Heathmart" component={Heathmart} />
+        //                                         <Stack.Screen name="Notification" component={Notification} />
+        //                                         {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
+        //                                         {/* <Stack.Screen name="Services" component={Services} /> */}
+        //                                         <Stack.Screen name="Health" component={Health} />
+        //                                         <Stack.Screen name="Favourites" component={Favourites} />
+        //                                         <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
+        //                                         {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
+        //                                         <Stack.Screen name="HelpFQ" component={HelpFQ} />
+        //                                         {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
+        //                                         <Stack.Screen name="TermsConditions" component={TermsConditions} />
+
+
+        //                                         <Stack.Screen name="MedRequest" component={MedRequest} />
+        //                                         <Stack.Screen name="MyQcoins" component={MyQcoins} />
+        //                                         {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
+        //                                         {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
+
+        //                                     </>
+        //                                 )
+        //                                 }
+
+
+
+        //                             </Stack.Navigator>
+        //                         </NavigationContainer>
+        //                     )}
+        //                 </CredentialsContext.Consumer>
+        //             )}
+        //         </>
+        //     )}
+
+
+        // </WellcomeContext.Consumer>
+
+        <NavigationContainer linking={linking}>
+            {storeCredentials ? (
+                <Drawer.Navigator
+                    drawerContent={(props) => <CustomSidebarMenu {...props} />}
+                    screenOptions={{
+                        drawerPosition: "right",
+                        swipeEnabled: false,
+                        unmountOnBlur: true,
+                        lazy: true
+                    }}
+                >
+                    <Drawer.Screen
+                        name="StackNavigator"
+                        component={StackNavigator}
+                        options={{
+                            headerShown: false,
+                            drawerLabel: () => null,
+                            title: null,
+                            drawerIcon: () => null
+                        }}
+                    />
+                </Drawer.Navigator>
+            ) : (
+                <Stack.Navigator
+                    screenOptions={{
+                        headerStyle: { backgroundColor: "transparent" },
+                        headerTintColor: "#F0F0EE",
+                        headerTitle: "",
+                        headerTransparent: true,
+                        headerLeftContainerStyle: { paddingLeft: 20 }
+                    }}
+                    initialRouteName="Login"
+                >
+                    <Stack.Screen name="Login" component={Login} />
+                    <Stack.Screen name="Signup" component={Signup} />
+                    {/* Include all your auth screens here */}
+                    <Stack.Screen name="Otpinput" component={Otpinput} />
+                    <Stack.Screen name="Repassword" component={Repassword} />
+                    <Stack.Screen name="Homepage" component={Homepage} />
+
+                    <Stack.Screen name="CustomSidebarMenu" component={CustomSidebarMenu} />
+                    <Stack.Screen name="Contuctus" component={Contuctus} />
+                    <Stack.Screen name="Settings" component={Settings} />
+                    <Stack.Screen name="ChangePinPage" component={ChangePinPage} />
+                    <Stack.Screen name="OtpinputChangeNumber" component={OtpinputChangeNumber} />
+                    <Stack.Screen name="UserProfile" component={UserProfile} />
+                    <Stack.Screen name="WeightTracker" component={WeightTracker} />
+                    <Stack.Screen name="MyReport" component={MyReport} />
+                    <Stack.Screen name="AddReview" component={AddReview} />
+                    <Stack.Screen name="BmiTracker" component={BmiTracker} />
+                    <Stack.Screen name="SslcommerzPayment" component={SslcommerzPayment} />
+                    <Stack.Screen name="Success" component={SuccessScreen} />
+                    <Stack.Screen name="BpTracker" component={BpTracker} />
+                    <Stack.Screen name="BellySizeTracker" component={BellySizeTracker} />
+                    <Stack.Screen name="BmiCalculator" component={BmiCalculator} />
+                    <Stack.Screen name="WaterIntakePage" component={WaterIntakePage} />
+                    <Stack.Screen name="Chat" component={Chat} />
+                    <Stack.Screen name="UserChat" component={UserChat} />
+                    <Stack.Screen name="TestPage" component={TestPage} />
+                    <Stack.Screen name="TestResultPage" component={TestResultPage} />
+                    <Stack.Screen name="IncorrectAnswerPage" component={IncorrectAnswerPage} />
+                    <Stack.Screen name="MyFitBackPackage" component={MyFitBackPackage} />
+                    <Stack.Screen name="MyResetPackage" component={MyResetPackage} />
+
+                    <Stack.Screen name="FullSolutionsPage" component={FullSolutionsPage} />
+                    <Stack.Screen name="CustomerReview" component={CustomerReview} />
+                    <Stack.Screen name="DietitianProfile" component={DietitianProfile} />
+                    <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} />
+                    <Stack.Screen name="HealthTracking" component={HealthTracking} />
+                    <Stack.Screen name="HealthTrackingDetails" component={HealthTrackingDetails} />
+                    <Stack.Screen name="CheckWellness" component={CheckWellness} />
+                    <Stack.Screen name="RecipeVideo" component={RecipeVideo} />
+                    <Stack.Screen name="ExerciseVideo" component={ExerciseVideo} />
+                    <Stack.Screen name="HealthTipsVideo" component={HealthTipsVideo} />
+                    <Stack.Screen name="FoodWiseCalories" component={FoodWiseCalories} />
+                    <Stack.Screen name="ActivitiesTracking" component={ActivitiesTracking} />
+                    <Stack.Screen name="OrdermedicineDetails" component={OrdermedicineDetails} />
+                    <Stack.Screen name="ViewImg" component={ViewImg} />
+                    <Stack.Screen name="Cart" component={Cart} />
+                    <Stack.Screen name="PlaceOrder" component={PlaceOrder} />
+                    <Stack.Screen name="Heathmart" component={Heathmart} />
+                    <Stack.Screen name="Notification" component={Notification} />
+                    {/* <Stack.Screen name="Promohome" component={Promohome} /> */}
+                    {/* <Stack.Screen name="Services" component={Services} /> */}
+                    <Stack.Screen name="Health" component={Health} />
+                    <Stack.Screen name="Favourites" component={Favourites} />
+                    <Stack.Screen name="OrdermedicineHome" component={OrdermedicineHome} />
+                    {/* <Stack.Screen name="SuccessOrder" component={SuccessOrder} /> */}
+
+                    <Stack.Screen name="HelpFQ" component={HelpFQ} />
+                    {/* <Stack.Screen name="AboutUs" component={AboutUs} /> */}
+                    <Stack.Screen name="TermsConditions" component={TermsConditions} />
+
+
+                    <Stack.Screen name="MedRequest" component={MedRequest} />
+                    <Stack.Screen name="MyQcoins" component={MyQcoins} />
+                    {/* <Stack.Screen name="MakeAppoinment" component={MakeAppoinment} /> */}
+                    {/* <Stack.Screen name="BookAppoinment" component={BookAppoinment} /> */}
+                    {/* ... */}
+                </Stack.Navigator>
             )}
-
-
-        </WellcomeContext.Consumer>
+        </NavigationContainer>
 
     );
 };

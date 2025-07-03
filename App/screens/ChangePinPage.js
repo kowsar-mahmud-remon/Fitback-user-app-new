@@ -11,8 +11,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CredentialsContext } from '../../components/CredintailsContext';
 import { UserContext } from '../../components/CredintailsContext';
 
-// import * as Notifications from 'expo-notifications';
-// import { requestPermissionsAsync, scheduleNotification } from '../../NotificationService';
+import * as Notifications from 'expo-notifications';
+import { requestPermissionsAsync, scheduleNotification } from '../../NotificationService';
 
 
 import colors from '../config/colors';

@@ -112,9 +112,6 @@ async function registerForPushNotificationsAsync() {
 async function savePushToken(token, userId) {
   console.log("Saving token:", token, "for user:", userId);
 
-  // Add this line to detect production builds
-  const isProduction = !Constants.executionEnvironment === 'storeClient';
-
   try {
     const response = await fetch('https://chat-server-steel-phi.vercel.app/api/save-push-token', {
       method: 'POST',
@@ -123,8 +120,7 @@ async function savePushToken(token, userId) {
       },
       body: JSON.stringify({
         userId,
-        token,
-        isProduction
+        token
       }),
     });
     const data = await response.json();

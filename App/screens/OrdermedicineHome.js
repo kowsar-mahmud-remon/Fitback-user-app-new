@@ -264,7 +264,14 @@ function OrdermedicineHome({ navigation, route }) {
                     .then((response) => response.json())
                     .then((json) => {
 
-                        setAllorder(json.reverse());
+                        // setAllorder(json.reverse());
+
+                        const userOrders = json.filter(
+                            (item) => String(item.userid) == (userid)
+                        );
+
+                        setAllorder(userOrders.reverse());
+
 
                         // setLoading1(false)
 
@@ -359,20 +366,41 @@ function OrdermedicineHome({ navigation, route }) {
 
             {
                 allorder.map((item, index) => {
+                    console.log("useridddddddddd", item.userid, userid);
 
-                    if (item.userid == userid && item.orderstatus != 'submitted'
-                        // item.orderstatus != 'Delivered' && item.orderstatus != 'Cancelled'
-                    ) {
+                    // if (item.userid == userid && item.orderstatus != 'submitted'
+                    // ) {
+                    //     allsubmitted.push(item);
+                    // }
+
+                    // if (item.userid == userid && (item.orderstatus == 'completed' || item.orderstatus == 'Delivered')) {
+                    //     allonprogress.push(item);
+                    // }
+
+                    // if (item.userid == userid && item.orderstatus == 'Cancelled') {
+                    //     allcanceled.push(item);
+                    // }
+
+
+
+
+                    if (item.orderstatus == 'submitted') {
                         allsubmitted.push(item);
                     }
 
-                    if (item.userid == userid && (item.orderstatus == 'completed' || item.orderstatus == 'Delivered')) {
+                    if (
+                        // item.userid == userid && 
+                        item.orderstatus == 'completed' || item.orderstatus == 'Delivered'
+                    ) {
                         allonprogress.push(item);
                     }
 
-                    if (item.userid == userid && item.orderstatus == 'Cancelled') {
+                    if (
+                        // item.userid == userid && 
+                        item.orderstatus == 'Cancelled') {
                         allcanceled.push(item);
                     }
+
 
                 });
             }

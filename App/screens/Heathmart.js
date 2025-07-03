@@ -507,9 +507,9 @@ function Heathmart({ navigation, route }) {
         setNewjsonuserid(item.jsonuserid != null ? item.jsonuserid : []);
 
         setDetails(item);
-        setDiscountprice(((parseFloat(item.mrp) - (parseFloat(item.mrp) * (parseFloat(getdiscountproduct) / 100)))).toFixed(2));
+        setDiscountprice(((parseFloat(item.mrp) - parseFloat(item?.discount || 0))).toFixed(2));
 
-        setDiscountprice1(((parseFloat(item.mrp) - (parseFloat(item.mrp) * (parseFloat(getdiscountproduct) / 100)))).toFixed(2));
+        setDiscountprice1(((parseFloat(item.mrp) - parseFloat(item?.discount || 0))).toFixed(2));
 
         setRegularPrice(item.mrp);
 
@@ -1589,7 +1589,13 @@ function Heathmart({ navigation, route }) {
 
                             <Text style={{ fontSize: 10, color: colors.ash, textDecorationLine: 'line-through', fontFamily: 'Poppins_400Regular' }}>{parseFloat(item.mrp.replace(",", ""))}</Text>
 
-                            <Text style={{ fontSize: 10, color: "#FF8000", left: 5, fontFamily: 'Poppins_500Medium' }}>Tk.{(parseFloat(item.mrp.replace(",", "")) - (parseFloat(item.mrp.replace(",", "")) * (parseInt(getdiscountproduct) / 100))).toFixed(2)}</Text>
+                            {/* <Text style={{ fontSize: 10, color: "#FF8000", left: 5, fontFamily: 'Poppins_500Medium' }}>Tk.{(parseFloat(item.mrp.replace(",", "")) - (parseFloat(item.mrp.replace(",", "")) * (parseInt(getdiscountproduct) / 100))).toFixed(2)}</Text> */}
+
+                            <Text style={{ fontSize: 10, color: "#FF8000", left: 5, fontFamily: 'Poppins_500Medium' }}>Tk.{(
+                                parseFloat(item.mrp.replace(",", "")) -
+                                // parseFloat((item.discount).replace(",", ""))
+                                parseFloat(String(details?.discount || 0).replace(",", ""))
+                            ).toFixed(2)}</Text>
 
                         </View>
 
@@ -2133,7 +2139,12 @@ function Heathmart({ navigation, route }) {
 
                                         <Text style={{ fontFamily: 'Poppins_400Regular', letterSpacing: .9, fontSize: 14, color: colors.ash, textDecorationLine: 'line-through', bottom: 20 }}>{parseFloat(String(details.mrp))} TK</Text>
 
-                                        <Text style={{ fontFamily: 'Poppins_500Medium', letterSpacing: .9, fontSize: 14, color: colors.oranget, left: 10, bottom: 20 }}>{(parseFloat(String(details.mrp).replace(",", "")) - (parseFloat(String(details.mrp).replace(",", "")) * (parseInt(getdiscountproduct) / 100))).toFixed(2)} TK</Text>
+                                        {/* <Text style={{ fontFamily: 'Poppins_500Medium', letterSpacing: .9, fontSize: 14, color: colors.oranget, left: 10, bottom: 20 }}>{(parseFloat(String(details.mrp).replace(",", "")) - (parseFloat(String(details.mrp).replace(",", "")) * (parseInt(getdiscountproduct) / 100))).toFixed(2)} TK</Text> */}
+
+                                        <Text style={{ fontFamily: 'Poppins_500Medium', letterSpacing: .9, fontSize: 14, color: colors.oranget, left: 10, bottom: 20 }}> {(
+                                            parseFloat(String(details.mrp).replace(",", "")) -
+                                            parseFloat(String(details?.discount || 0).replace(",", ""))
+                                        ).toFixed(2)} TK</Text>
 
                                     </View>
 
