@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { Dimensions, FlatList, ActivityIndicator, StyleSheet, SafeAreaView, View, StatusBar, Pressable, Text, ScrollView, TextInput, Image, Linking } from 'react-native';
+import { Dimensions, FlatList, ActivityIndicator, StyleSheet, SafeAreaView, View, StatusBar, Pressable, Text, ScrollView, TextInput, Image, Linking, Animated, Alert } from 'react-native';
 import colors from '../config/colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import * as ImagePicker from 'expo-image-picker';
@@ -11,6 +11,25 @@ import { UserContext } from '../../components/CredintailsContext';
 import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 
 function BellySizeTracker({ navigation, route }) {
+
+  const scaleAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(scaleAnim, {
+          toValue: 1.2,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.delay(1000), // Wait before next bounce
+      ])
+    ).start();
+  }, []);
 
   const [unread, setUnread] = useState(false);
   const { authtoken, setAuthtoken } = useContext(UserContext);
@@ -281,7 +300,7 @@ function BellySizeTracker({ navigation, route }) {
 
   };
 
-
+  const [userData, setUserData] = useState();
 
   const UserInfo = () => {
 
@@ -295,6 +314,8 @@ function BellySizeTracker({ navigation, route }) {
         .then((response) => response.json())
         .then((json) => {
           setNointernet(false);
+
+          setUserData(json);
 
           setPhonep(json.phonenumber),
             setNamep(json.name),
@@ -491,7 +512,6 @@ function BellySizeTracker({ navigation, route }) {
   const monthWiseData = processBellySizeData(bellySize);
 
 
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -508,13 +528,7 @@ function BellySizeTracker({ navigation, route }) {
 
             <View style={{ width: '100%', height: 30, top: 8, flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 20 }} >
 
-              <Pressable style={{ width: 22, height: 22, right: 15 }} onPress={() => navigation.navigate("Pharmacy", { reminder: true })} >
-                <Image
-                  style={{ width: 22, height: 22, left: 0, top: 2 }}
-                  resizeMode='contain'
-                  source={require('../assets/search.jpg')}
-                />
-              </Pressable>
+
 
               <Pressable style={{ width: 22, height: 22, right: 0, display: testCredentials.cartbuy == undefined ? 'none' : testCredentials.cartbuy.length > 0 ? 'none' : 'flex' }} onPress={() => navigation.navigate("Cart", {})} >
                 <Image
@@ -549,7 +563,6 @@ function BellySizeTracker({ navigation, route }) {
     });
   }, [navigation]);
 
-
   return (
     <SafeAreaView style={{ width: '100%', height: '100%' }}>
 
@@ -560,6 +573,7 @@ function BellySizeTracker({ navigation, route }) {
         // barStyle={statusBarStyle}
 
         />
+
         <View style={[styles.navbar, { flexDirection: 'row' }]}>
 
           <Pressable activeOpacity={4} style={{ width: '5%', height: 25, left: 15, top: 17, borderWidth: 0 }} >
@@ -685,49 +699,103 @@ function BellySizeTracker({ navigation, route }) {
 
       <View style={styles.footerStyle}>
 
-        <View style={{ width: '100%', height: 65, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', backgroundColor: colors.white }}>
+        <View style={{ width: '100%', height: 69, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', backgroundColor: colors.white }}>
 
           <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.red, borderBottomWidth: 0 }]} onPress={() => navigation.navigate("Homepage", {})}>
 
-            <Image resizeMode={'cover'} style={{ width: 22, height: 22 }} source={require("../assets/1_med.jpg")} />
+            <Image resizeMode={'cover'} style={{ width: 24, height: 24 }} source={require("../assets/fitback/homeIcon.png")} />
 
             <Text style={{ top: 4, color: colors.ash, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>বাসা অনসন্ধান করুন</Text>
             <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>HOME</Text>
 
           </Pressable>
 
-          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.dblue, borderBottomWidth: 0 }]} onPress={() => navigation.navigate("Reminder", {})}>
-            <Image resizeMode={'cover'} style={{ width: 22, height: 22 }} source={require("../assets/2_reminder.jpg")} />
-            <Text style={{ top: 4, color: colors.ash, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>লগ ইন করুন </Text>
-            <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>REMINDER</Text>
+          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: "#EE426D", borderBottomWidth: 5 }]} onPress={() => navigation.navigate("Heathmart", {})}>
+
+            <Image resizeMode={'cover'} style={{ width: 22, height: 22 }} source={require("../assets/fitback/shopIcon.png")} />
+            <Text style={{ top: 4, color: colors.ash, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>বাসা অনসন্ধান করুন</Text>
+            <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>Shop</Text>
 
           </Pressable>
 
+          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.dblue, borderBottomWidth: 0 }]} onPress={() => {
+            if (userData?.chat_status) {
+              navigation.navigate("UserChat", {
+                userName: userData?.name,
+                user_FUId: userData?.user_FUId,
+                image: userData?.image,
+              });
+            } else {
+              Alert.alert(
+                "You do not have permission to chat.",
+                "Please purchase a package.",
+              );
+            }
+          }}>
 
+            <View style={{
+              backgroundColor: "#fff",
+              paddingVertical: 14,
+              paddingHorizontal: 15,
+              shadowColor: '#000',
+              shadowOffset: { width: 3, height: 3 },
+              shadowOpacity: 5,
+              shadowRadius: 5,
+              elevation: 6,
+              borderRadius: 60,
+              marginTop: -16,
+              // borderWidth: 1,
+              // borderColor: colors.ash1
+            }}>
+              {/* <Image resizeMode={'cover'} style={{ width: 36, height: 36 }} source={require("../assets/fitback/chatIcon.png")} /> */}
+              <Animated.View
+                style={{ width: 36, height: 36, transform: [{ scale: scaleAnim }] }}
+              >
+                <Animated.Image
+                  source={require('../assets/fitback/chatIcon.png')}
+                  resizeMode="cover"
+                  style={{ width: 36, height: 36 }}
+                />
+              </Animated.View>
 
-          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.dblue, borderBottomWidth: 4 }]} onPress={() => navigation.navigate("Health", {})}>
+            </View>
+            <Text style={{ top: 4, color: colors.ash, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>লগ ইন করুন </Text>
+
+          </Pressable>
+
+          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.dblue, borderBottomWidth: 0 }]} onPress={() => navigation.navigate("HealthTracking", {})}>
 
             <Image resizeMode={'cover'} style={{ width: 24, height: 24 }} source={require("../assets/fitback/healthIcon.png")} />
             <Text style={{ top: 4, color: colors.ash, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>লগ ইন করুন </Text>
-            <Text style={{ top: 7.8, color: colors.dblue, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>Health</Text>
+            <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>Health</Text>
 
           </Pressable>
 
 
-          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.green, borderBottomWidth: 0 }]} onPress={() => navigation.navigate("Heathmart", {})}>
-
-            <Image resizeMode={'cover'} style={{ width: 22, height: 22 }} source={require("../assets/estore.jpg")} />
-            <Text style={{ top: 4, color: colors.ash, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>বাসা অনসন্ধান করুন</Text>
-            <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>E-STORE</Text>
-
-          </Pressable>
 
 
-          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.dblue, borderBottomWidth: 0 }]} onPress={() => navigation.navigate("Promohome", {})}>
 
-            <Image resizeMode={'cover'} style={{ width: 22, height: 22 }} source={require('../assets/top_right_promo.jpg')} />
+          <Pressable style={[styles.tuchabluebuttonf, { borderBottomColor: colors.dblue, borderBottomWidth: 0 }]} onPress={() =>
+            Alert.alert(
+              "Are you sure to start the quiz?",
+              "You will get 20 minutes for 20 questions.",
+              [
+                {
+                  text: "No",
+                  onPress: () => null,
+                  style: "cancel",
+                },
+                {
+                  text: "Yes",
+                  onPress: () => navigation.navigate("TestPage", {}),
+                },
+              ]
+            )
+          }>
+
+            <Image resizeMode={'cover'} style={{ width: 24, height: 24 }} source={require('../assets/fitback/qwizIcon.png')} />
             <Text style={{ top: 4, color: colors.black, fontSize: 10, fontWeight: 'bold', display: lan ? 'none' : 'flex' }}>লগ ইন করুন </Text>
-            <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>PROMO</Text>
+            <Text style={{ top: 7.8, color: colors.ash, fontSize: 10, display: lan ? 'flex' : 'none', fontFamily: 'Poppins_400Regular', letterSpacing: 0.9 }}>Quiz</Text>
 
           </Pressable>
 

@@ -111,7 +111,7 @@ function BmiCalculator({ navigation, route }) {
     fetch('https://qwikit1.pythonanywhere.com/userProfile/' + userid, requestOptions)
       .then((response) => response.json())
       .then((currentData) => {
-        setNointernet(false);
+        // setNointernet(false);
         if (currentData.gender == "" || currentData.gender == null) {
           setGender(gender);
         } else {
@@ -169,14 +169,14 @@ function BmiCalculator({ navigation, route }) {
             console.log("Successfully updated");
           })
           .catch((error) => {
-            setNointernet(true);
+            // setNointernet(true);
             console.error("Update failed:", error);
           });
       })
 
       .catch((error) => {
         console.error(error);
-        setNointernet(true);
+        // setNointernet(true);
         setLoading1(false);
 
       });

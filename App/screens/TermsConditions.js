@@ -321,31 +321,33 @@ source={require('../assets/search.jpg')}
 
 
                         <View style={{ width: '100%', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                            <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 20 }}>
+                            {/* <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 20 }}>
 
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 15, }}>Lorem ipsum dolor sit amet</Text>
 
-                            </View>
+                            </View> */}
 
                             <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
-                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Welcome to FitBack! Please read these Terms and Conditions carefully before using our app or services. By accessing or using FitBack, you agree to comply with these terms.
+
+                                </Text>
 
                             </View>
 
-                            <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
+                            {/* <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.
                                 </Text>
 
-                            </View>
+                            </View> */}
 
-                            <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
+                            {/* <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
 
-                            </View>
+                            </View> */}
 
 
 
@@ -360,7 +362,9 @@ source={require('../assets/search.jpg')}
                             </View>
                             <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
-                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</Text>
+                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>FitBack values your privacy and is committed to protecting your personal information. When you use our app, we may collect information such as your name, contact details, and health-related data to provide personalized services. Your data is securely stored and will not be shared with any third parties without your permission, except when required by law. You may request access to, or deletion of, your personal information at any time.
+
+                                </Text>
 
                             </View>
 
@@ -373,7 +377,7 @@ source={require('../assets/search.jpg')}
                             </View>
                             <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
-                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</Text>
+                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>FitBack offers health-related products and weight loss services, including professional support from certified dietitians. Our goal is to assist you on your wellness journey with expert guidance and quality products. However, our services are not intended to replace professional medical advice, diagnosis, or treatment. Always consult your doctor before starting any health or fitness program, especially if you have existing medical conditions. We reserve the right to modify, update, or discontinue any part of the service at our discretion without prior notice.</Text>
 
                             </View>
 
@@ -386,37 +390,28 @@ source={require('../assets/search.jpg')}
                                 <Text style={{ fontSize: 12, color: colors.text, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_500Medium', letterSpacing: .9 }}>USE RESTRICTIONS</Text>
 
                             </View>
-                            <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
+                            {/* <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </Text>
 
-                            </View>
+                            </View> */}
                             <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
-                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem:</Text>
+                                <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, }}>You agree to use FitBack only for lawful and intended purposes. Misuse of the app, including but not limited to uploading false information, engaging in harmful or fraudulent activity, or interfering with the app's operation, is strictly prohibited. Any violation of these terms may result in suspension or termination of your access to FitBack.
+
+                                    By continuing to use FitBack, you confirm that you have read, understood, and agreed to these Terms and Conditions. If you have any questions or concerns, please contact us at fitbackbd@gmail.com
+                                </Text>
 
                             </View>
 
-                            <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
+                            {/* <View style={{ width: '100%', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 0 }}>
 
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, paddingLeft: 25, }}>1.	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</Text>
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, paddingLeft: 25, }}>2.	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</Text>
                                 <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 25, paddingLeft: 25, }}>3.	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</Text>
 
 
-                            </View>
-
-
-
-
-
-
-
-
-
-
-
-
+                            </View> */}
 
 
 

@@ -420,7 +420,7 @@ source={require('../assets/search.jpg')}
                             <Text style={{ color: colors.white, fontFamily: 'Poppins_500Medium', letterSpacing: .9, top: 1, fontSize: 12 }}>SHIPPING</Text>
                         </Pressable> */}
 
-                        <View style={{ marginBottom: 5, bottom: 15, width: '100%', height: 38, justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', left: 0, marginTop: 10 }}>
+                        {/* <View style={{ marginBottom: 5, bottom: 15, width: '100%', height: 38, justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row', left: 0, marginTop: 10 }}>
 
                             <Pressable style={{ marginLeft: 0, flexDirection: 'row', borderRadius: 14, width: '28%', height: 30, backgroundColor: personal ? "#EE416C" : colors.white, justifyContent: 'center', alignItems: 'center' }} onPress={() => { pressPersonal(); }}>
 
@@ -445,7 +445,7 @@ source={require('../assets/search.jpg')}
 
 
 
-                        </View>
+                        </View> */}
 
                         <View style={[styles.sendform, { bottom: 45 }]}>
                             <View style={{ width: '100%', justifyContent: 'flex-start', alignItems: 'flex-start', display: personal ? 'flex' : 'none' }}>
@@ -456,13 +456,13 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: indications ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>1. Lorem ipsum dolor sit amet,?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>1. What is FitBack?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: indications ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: indications ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: indications ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>FitBack is a health and wellness platform that helps you achieve your weight loss goals. We offer high-quality health products, personalized diet plans, and professional support from certified dietitians—both online and in our offices. </Text>
 
                                     </View>
 
@@ -474,13 +474,13 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: adultdose ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>2. Lorem ipsum dolor sit amet,?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>2. What kind of products does FitBack sell?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: adultdose ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: adultdose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: adultdose ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>We offer a range of health products designed to support weight loss, including supplements, protein shakes, herbal teas, and more. All our products are carefully selected and approved by our team of health experts. </Text>
 
                                     </View>
 
@@ -492,13 +492,13 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: childdose ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>3. Lorem ipsum dolor sit amet?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>3. Can I get professional advice on my diet and fitness?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: childdose ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: childdose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: childdose ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Yes! You can chat directly with our certified dietitians through the app. They will answer your questions, assess your health, and help you with a personalized diet and fitness plan to reach your goals. </Text>
 
                                     </View>
 
@@ -511,13 +511,14 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: renaldose ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>4. Lorem ipsum dolor sit amet?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>4. Do I have to visit the FitBack office for services?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: renaldose ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: renaldose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: renaldose ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Yes, you can visit our FitBack office to take advantage of our weight loss services. At the office, you’ll get professional support from our team, access to personalized health programs, and in-person guidance to help you achieve your fitness goals.
+                                        </Text>
 
                                     </View>
 
@@ -530,13 +531,13 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: renaldose1 ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>5. Lorem ipsum dolor sit amet?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>5. Are the diet plans suitable for everyone?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: renaldose ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: renaldose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: renaldose1 ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Our diet plans are personalized based on your age, weight, health condition, and fitness goals. Whether you're looking to lose weight, maintain it, or improve overall wellness, our experts will create a plan that's right for you. </Text>
 
                                     </View>
 
@@ -548,13 +549,14 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: renaldose2 ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>6. Lorem ipsum dolor sit amet?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>6. Are your products safe?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: renaldose ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: renaldose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: renaldose2 ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Yes. All our products are made from high-quality, natural ingredients and are approved by our health experts. However, we always recommend consulting with a dietitian or doctor before starting any new supplement.
+                                        </Text>
 
                                     </View>
 
@@ -566,13 +568,14 @@ source={require('../assets/search.jpg')}
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: renaldose3 ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
-                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>7. Lorem ipsum dolor sit amet?</Text>
+                                        <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>7. How can I contact FitBack support?</Text>
                                         {/* <ArrowDown1 style={{top:4,display: renaldose ? 'none' : 'flex',width:'5%',right:7}}/>
 <ArrowLeft1 style={{top:4 ,display: renaldose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: renaldose3 ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
-                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus. </Text>
+                                        <Text style={{ fontSize: 12, color: colors.ash, left: 10, padding: 10, paddingRight: 15, fontFamily: 'Poppins_400Regular', letterSpacing: .9, textAlign: 'justify', lineHeight: 22 }}>You can reach out to us through the “Help & Support” section in the app, call our helpline, or visit our office during working hours. We're here to assist you anytime!
+                                        </Text>
 
                                     </View>
 
@@ -580,13 +583,11 @@ source={require('../assets/search.jpg')}
                                 </Pressable>
 
 
-                                <Pressable style={[styles.flatdetails, { paddingLeft: 0, borderColor: colors.ash1, borderRadius: 6, borderWidth: 0, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, paddingBottom: 0, width: '97%' }]} onPress={() => { renaldose4 ? setRenaldose4(false) : setRenaldose4(true); }}>
+                                {/* <Pressable style={[styles.flatdetails, { paddingLeft: 0, borderColor: colors.ash1, borderRadius: 6, borderWidth: 0, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, paddingBottom: 0, width: '97%' }]} onPress={() => { renaldose4 ? setRenaldose4(false) : setRenaldose4(true); }}>
 
 
                                     <View style={{ width: '100%', borderBottomColor: colors.ash1, borderBottomWidth: renaldose4 ? 0 : 0, justifyContent: 'flex-start', alignItems: 'flex-start', flexDirection: 'row', marginTop: 10, top: 8 }} >
                                         <Text style={{ left: 20, color: "#000000", fontSize: 12, fontFamily: 'Poppins_500Medium', backgroundColor: "#E6E6E6", paddingHorizontal: 8, paddingVertical: 8, borderRadius: 6, letterSpacing: .9, width: '95%' }}>8. Lorem ipsum dolor sit amet?</Text>
-                                        {/* <ArrowDown1 style={{top:4,display: renaldose ? 'none' : 'flex',width:'5%',right:7}}/>
-<ArrowLeft1 style={{top:4 ,display: renaldose ? 'flex' : 'none',width:'5%',right:7}}/> */}
                                     </View>
 
                                     <View style={{ left: 20, width: '94%', display: renaldose4 ? 'flex' : 'none', paddingRight: 10, justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: 10, borderColor: colors.ash1, borderRadius: 1, borderWidth: 1, marginTop: 20, borderRadius: 4 }}>
@@ -595,7 +596,7 @@ source={require('../assets/search.jpg')}
                                     </View>
 
 
-                                </Pressable>
+                                </Pressable> */}
 
 
 

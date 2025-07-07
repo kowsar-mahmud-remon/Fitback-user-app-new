@@ -671,7 +671,7 @@ function CustomSidebarMenu({ navigation, props, route }) {
             </Pressable>
 
             {/* 3 */}
-            <Pressable style={{ right: 10, width: '85%', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', borderBottomColor: colors.ash1, height: 55 }} onPress={() => navigation.navigate("OrdermedicineHome", {})}>
+            {/* <Pressable style={{ right: 10, width: '85%', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', borderBottomColor: colors.ash1, height: 55 }} onPress={() => navigation.navigate("OrdermedicineHome", {})}>
 
               <View style={{ width: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
                 <Image
@@ -689,10 +689,10 @@ function CustomSidebarMenu({ navigation, props, route }) {
                 <Text style={{ fontSize: 12, color: colors.text, letterSpacing: .9, fontFamily: 'Poppins_400Regular', display: testCredentials.lan ? 'flex' : 'none' }}>My Fitback Package</Text>
                 <Text style={{ fontSize: 12, color: colors.text, letterSpacing: .9, fontFamily: 'Poppins_400Regular', display: testCredentials.lan ? 'none' : 'flex' }}>অর্ডারস</Text>
               </View>
-            </Pressable>
+            </Pressable> */}
 
             {/* 3 */}
-            <Pressable style={{ right: 10, width: '85%', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', borderBottomColor: colors.ash1, height: 55 }} onPress={() => navigation.navigate("OrdermedicineHome", {})}>
+            {/* <Pressable style={{ right: 10, width: '85%', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', borderBottomColor: colors.ash1, height: 55 }} onPress={() => navigation.navigate("OrdermedicineHome", {})}>
               <View style={{ width: 50, justifyContent: 'flex-end', alignItems: 'center' }}>
                 <Image
                   style={{
@@ -708,7 +708,7 @@ function CustomSidebarMenu({ navigation, props, route }) {
                 <Text style={{ fontSize: 12, color: colors.text, letterSpacing: .9, fontFamily: 'Poppins_400Regular', display: testCredentials.lan ? 'flex' : 'none' }}>My Reset Package</Text>
                 <Text style={{ fontSize: 12, color: colors.text, letterSpacing: .9, fontFamily: 'Poppins_400Regular', display: testCredentials.lan ? 'none' : 'flex' }}>অর্ডারস</Text>
               </View>
-            </Pressable>
+            </Pressable> */}
 
             {/* 3 */}
             <Pressable style={{ right: 10, width: '85%', justifyContent: 'flex-start', alignItems: 'center', flexDirection: 'row', borderBottomColor: colors.ash1, height: 55 }} onPress={() => navigation.navigate("CustomerReview", {})}>

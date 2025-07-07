@@ -610,12 +610,13 @@ source={require('../assets/search.jpg')}
                             <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginBottom: 20 }}>Say something to start a live chat!</Text>
                             <MaterialIcons name="wifi-calling-3" size={30} color="white" />
 
-                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginBottom: 20, marginTop: 6 }}>+1012 3456 789</Text>
+                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginBottom: 20, marginTop: 6 }}>+880190 78 85 800
+                            </Text>
                             <MaterialIcons name="email" size={28} color="white" />
-                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginBottom: 20, marginTop: 6 }}>demo@gmail.com</Text>
+                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginBottom: 20, marginTop: 6 }}>fitbackbd@gmail.com</Text>
                             <FontAwesome6 name="location-dot" size={28} color="white" />
-                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginTop: 6 }}>132 Dartmouth Street Boston,</Text>
-                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13 }}>Massachusetts 02156 United States</Text>
+                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13, marginTop: 6 }}>H: 27/1, R: 13A, Dhanmondi,</Text>
+                            <Text style={{ color: "white", fontFamily: 'Poppins_400Regular', fontSize: 13 }}>Dhaka-1209</Text>
 
 
                             <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: 40 }}>
@@ -757,7 +758,9 @@ source={require('../assets/search.jpg')}
 
                     <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 30 }}>
 
-                        <Text style={{ color: colors.ash, fontFamily: 'Poppins_400Regular', letterSpacing: .9 }}>Or call Us Directly at <Text style={{ color: colors.blue }} onPress={() => { onPressMobileNumberClick("+880 1623 06 06 06"); }}> +880 1623 06 06 06</Text></Text>
+                        <Text style={{ color: colors.ash, fontFamily: 'Poppins_400Regular', letterSpacing: .9 }}>Or call Us Directly at <Text style={{ color: colors.blue }}
+                        // onPress={() => { onPressMobileNumberClick("+880190 78 85 800"); }}
+                        > +880 1907885800</Text></Text>
 
                     </View>
 
